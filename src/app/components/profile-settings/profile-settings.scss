@@ -35,6 +35,28 @@ $danger: #dc2626;
 }
 
 @media (max-width: 480px) {
+  .settings-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem;
+  }
+
+  .sidebar h3 {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar button {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+
   .content {
     padding: 16px;
   }
@@ -42,6 +64,28 @@ $danger: #dc2626;
   .card {
     padding: 20px;
     border-radius: 16px;
+    max-width: 100%;
+  }
+
+  .card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .card label {
+    font-size: 0.85rem;
+    margin-top: 1rem;
+  }
+
+  .card input {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+
+  .card button {
+    padding: 12px;
+    font-size: 0.9rem;
+    min-height: 40px;
   }
 }
 

@@ -12,6 +12,23 @@
   overflow: hidden;
   transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 
+  @media (max-width: 1024px) {
+    width: 220px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 1.6rem;
+  }
+
   /* Glass shine */
   &::before {
     content: '';
@@ -50,6 +67,14 @@
     overflow: hidden;
     box-shadow: inset 0 8px 20px rgba(0, 0, 0, 0.08);
 
+    @media (max-width: 768px) {
+      height: 200px;
+    }
+
+    @media (max-width: 480px) {
+      height: 180px;
+    }
+
     img {
       width: 180px;
       height: 180px;
@@ -57,6 +82,11 @@
       transition: transform 0.45s ease;
       filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.25));
       pointer-events: none;
+
+      @media (max-width: 480px) {
+        width: 160px;
+        height: 160px;
+      }
     }
 
     .nav {
@@ -70,7 +100,7 @@
       background: rgba(255, 255, 255, 0.35);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
-      color: #38bdf8; /* تم تعديل اللون من أزرق غامق إلى سماوي فاتح */
+      color: #38bdf8;
       font-size: 1.5rem;
       cursor: pointer;
       display: flex;
@@ -82,6 +112,12 @@
         0 8px 20px rgba(0, 0, 0, 0.18),
         inset 0 1px 0 rgba(255, 255, 255, 0.6);
       z-index: 5;
+      min-width: 44px;
+      min-height: 44px;
+
+      &:hover {
+        transform: translateY(-50%) scale(1.1);
+      }
     }
 
     .prev {
@@ -114,7 +150,7 @@
       &.active {
         width: 16px;
         border-radius: 999px;
-        background: linear-gradient(90deg, #38bdf8, #7dd3fc); /* تعديل الألوان */
+        background: linear-gradient(90deg, #38bdf8, #7dd3fc);
       }
     }
   }
@@ -130,15 +166,23 @@
       color: #0f172a;
       letter-spacing: 0.2px;
       margin-bottom: 0.3rem;
+
+      @media (max-width: 480px) {
+        font-size: 0.95rem;
+      }
     }
 
     .price {
       font-size: 1.15rem;
       font-weight: 900;
-      color: #38bdf8; /* تعديل اللون من أزرق غامق إلى سماوي فاتح */
+      color: #38bdf8;
       background: none;
       -webkit-text-fill-color: #38bdf8;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+
+      @media (max-width: 480px) {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -159,10 +203,21 @@
       transition: all 0.35s ease;
       position: relative;
       overflow: hidden;
+      min-height: 40px;
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      @media (max-width: 480px) {
+        padding: 0.65rem;
+        font-size: 0.75rem;
+        min-height: 36px;
+      }
     }
 
     .add-btn {
-      background: linear-gradient(145deg, #38bdf8, #0ea5e9); /* تعديل الألوان */
+      background: linear-gradient(145deg, #38bdf8, #0ea5e9);
       color: #fff;
       box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5);
 
@@ -170,53 +225,29 @@
         transform: translateY(-2px);
         box-shadow: 0 20px 45px rgba(56, 189, 248, 0.65);
       }
+
+      @media (max-width: 480px) {
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
     }
 
     .details-btn {
       background: linear-gradient(145deg, #ffffff, #e5e7eb);
-      color: #38bdf8; /* تعديل اللون */
+      color: #38bdf8;
       box-shadow: inset 0 0 0 2px rgba(56, 189, 248, 0.25);
 
       &:hover {
-        background: linear-gradient(145deg, #38bdf8, #0ea5e9); /* تعديل الألوان */
+        background: linear-gradient(145deg, #38bdf8, #0ea5e9);
         color: #fff;
       }
+
+      @media (max-width: 480px) {
+        &:hover {
+          background: linear-gradient(145deg, #38bdf8, #0ea5e9);
+        }
+      }
     }
-  }
-}
-
-@media (max-width: 1024px) {
-  .product-card {
-    width: 220px;
-  }
-}
-
-@media (max-width: 768px) {
-  .product-card {
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .product-card .image-slider {
-    height: 200px;
-  }
-}
-
-@media (max-width: 480px) {
-  .product-card {
-    padding: 0.8rem;
-    border-radius: 1.6rem;
-  }
-
-  .product-card .image-slider {
-    height: 180px;
-  }
-
-  .product-card .product-info h3 {
-    font-size: 0.95rem;
-  }
-
-  .product-card .price {
-    font-size: 1rem;
   }
 }

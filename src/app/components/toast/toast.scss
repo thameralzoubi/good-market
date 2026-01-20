@@ -4,6 +4,13 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 2000;
+
+  @media (max-width: 480px) {
+    top: 1.5rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    transform: none;
+  }
 }
 
 .toast {
@@ -17,18 +24,26 @@
   animation:
     slideDown 0.5s ease,
     fadeOut 0.5s ease 3.5s forwards;
+
+  @media (max-width: 480px) {
+    min-width: auto;
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 1.2rem;
+  }
 }
 
 /* ألوان حسب نوع الرسالة */
 .toast.success {
   background: linear-gradient(135deg, #22c55e, #15803d);
-} /* أخضر */
+}
 .toast.error {
   background: linear-gradient(135deg, #ef4444, #991b1b);
-} /* أحمر */
+}
 .toast.info {
   background: linear-gradient(135deg, #3b82f6, #1e40af);
-} /* أزرق */
+}
 
 /* أنيميشن */
 @keyframes slideDown {

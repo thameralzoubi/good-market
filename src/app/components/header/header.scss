@@ -16,6 +16,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    padding: 0 1.5rem;
+    height: 85px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+    height: 75px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 0.75rem;
+    height: 70px;
+  }
 }
 
 /* Logo */
@@ -24,11 +39,21 @@
   align-items: center;
   gap: 16px;
   cursor: pointer;
+  min-width: fit-content;
 
   h1 {
     font-size: 28px;
     font-weight: 900;
     color: #0f172a;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
 
     span {
       color: #38bdf8;
@@ -45,6 +70,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    border-radius: 12px;
+  }
 }
 
 /* Actions */
@@ -52,6 +83,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-left: auto;
+
+  @media (max-width: 480px) {
+    gap: 8px;
+  }
 }
 
 /* Buttons */
@@ -66,10 +102,13 @@
   border: none;
   cursor: pointer;
   transition: all 0.35s ease;
+  white-space: nowrap;
+  min-height: 44px;
 
   lucide-icon {
     stroke-width: 2;
     transition: all 0.3s ease;
+    flex-shrink: 0;
   }
 
   &.ghost {
@@ -92,6 +131,20 @@
       transform: translateY(-2px) scale(1.02);
     }
   }
+
+  @media (max-width: 768px) {
+    padding: 8px 14px;
+    font-size: 13px;
+
+    span {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 12px;
+    gap: 6px;
+  }
 }
 
 /* Divider */
@@ -100,6 +153,15 @@
   height: 36px;
   background: #e5e7eb;
   margin: 0 6px;
+
+  @media (max-width: 768px) {
+    height: 30px;
+    margin: 0 4px;
+  }
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 }
 
 /* Icon Buttons */
@@ -117,6 +179,9 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  min-height: 44px;
+  min-width: 44px;
+  flex-shrink: 0;
 
   lucide-icon {
     stroke-width: 2;
@@ -126,6 +191,11 @@
 
   &:hover {
     transform: translateY(-2px) scale(1.05);
+  }
+
+  @media (max-width: 480px) {
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -153,6 +223,12 @@
   justify-content: center;
   font-weight: bold;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
 }
 
 /* User Area */
@@ -161,6 +237,7 @@
   align-items: center;
   gap: 0.4rem;
   position: relative;
+  min-width: fit-content;
 }
 
 .username {
@@ -171,10 +248,20 @@
   padding: 6px 12px;
   border-radius: 12px;
   transition: all 0.3s ease;
+  white-space: nowrap;
 
   &:hover {
     background: rgba(56, 189, 248, 0.12);
     color: #38bdf8;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+
+  @media (max-width: 480px) {
+    display: none;
   }
 }
 
@@ -193,6 +280,11 @@
   pointer-events: none;
   transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 50;
+
+  @media (max-width: 480px) {
+    min-width: 160px;
+    padding: 0.6rem 0.5rem;
+  }
 }
 
 .dropdown.open {
@@ -215,9 +307,11 @@
   font-size: 0.95rem;
   color: #0f172a;
   transition: all 0.25s ease;
+  min-height: 44px;
 
   lucide-icon {
     color: #6b7280;
+    flex-shrink: 0;
   }
 
   &:hover {
@@ -227,6 +321,11 @@
     lucide-icon {
       color: #38bdf8;
     }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -247,6 +346,22 @@
     border: 1px solid #e5e7eb;
     outline: none;
     width: 260px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    min-height: 40px;
+
+    &:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+    }
+
+    @media (max-width: 1024px) {
+      width: 200px;
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   lucide-icon {
@@ -254,41 +369,11 @@
     right: 12px;
     cursor: pointer;
     color: #38bdf8;
-  }
-}
+    transition: all 0.3s ease;
+    flex-shrink: 0;
 
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 1024px) {
-  .header-search input {
-    width: 200px;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    height: 80px;
-  }
-
-  .btn span {
-    display: none;
-  }
-
-  .header-search {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo h1 {
-    font-size: 22px;
-  }
-
-  .logo-icon {
-    padding: 10px;
-  }
-
-  .actions {
-    gap: 8px;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }

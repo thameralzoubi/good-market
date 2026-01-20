@@ -6,6 +6,14 @@
   background: linear-gradient(135deg, #38bdf8, #0ea5e9);
   padding: 2rem;
 
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+
   .signup-card {
     background: #fff;
     width: 100%;
@@ -26,12 +34,31 @@
       box-shadow: 0 50px 100px rgba(0, 0, 0, 0.35);
     }
 
+    @media (max-width: 768px) {
+      padding: 2.2rem 1.8rem;
+      border-radius: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 1.8rem 1.4rem;
+      border-radius: 1.8rem;
+    }
+
     h2 {
       font-size: 2.4rem;
       font-weight: 900;
       margin-bottom: 1rem;
       color: #111827;
       text-align: center;
+      margin-top: 0;
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 1.8rem;
+      }
     }
 
     .subtitle {
@@ -39,17 +66,31 @@
       color: #6b7280;
       margin-bottom: 2.5rem;
       text-align: center;
+
+      @media (max-width: 480px) {
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+      }
     }
 
     .form-group {
       margin-bottom: 1.8rem;
       position: relative;
 
+      @media (max-width: 480px) {
+        margin-bottom: 1.5rem;
+      }
+
       label {
         display: block;
         font-weight: 700;
         color: #1f2937;
         margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+
+        @media (max-width: 480px) {
+          font-size: 0.85rem;
+        }
       }
 
       input {
@@ -61,6 +102,12 @@
         background: #f8fafc;
         transition: all 0.3s ease;
         box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        min-height: 44px;
+
+        @media (max-width: 480px) {
+          padding: 1rem 1.2rem;
+          font-size: 0.95rem;
+        }
 
         &:focus {
           outline: none;
@@ -83,10 +130,25 @@
       cursor: pointer;
       box-shadow: 0 15px 30px rgba(56, 189, 248, 0.35);
       transition: all 0.3s ease;
+      min-height: 48px;
 
       &:hover {
         transform: translateY(-3px);
         box-shadow: 0 20px 40px rgba(56, 189, 248, 0.5);
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+
+      @media (max-width: 768px) {
+        font-size: 1.05rem;
+      }
+
+      @media (max-width: 480px) {
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 1.6rem;
       }
     }
 
@@ -96,39 +158,23 @@
       font-size: 0.95rem;
       color: #6b7280;
 
+      @media (max-width: 480px) {
+        margin-top: 1.5rem;
+        font-size: 0.85rem;
+      }
+
       a {
         color: #38bdf8;
         font-weight: 700;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
         &:hover {
           text-decoration: underline;
+          color: #0ea5e9;
         }
       }
     }
-  }
-}
-
-@media (max-width: 768px) {
-  .signup-page {
-    padding: 1.5rem;
-  }
-
-  .signup-card {
-    padding: 2.2rem 1.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .signup-card {
-    padding: 1.8rem 1.4rem;
-    border-radius: 1.8rem;
-  }
-
-  .signup-card h2 {
-    font-size: 1.8rem;
-  }
-
-  .btn-submit {
-    font-size: 1rem;
   }
 }
 
@@ -150,9 +196,13 @@
     cursor: pointer;
     color: #38bdf8;
     transition: 0.2s;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
 
     &:hover {
       color: #0ea5e9;
+      transform: translateY(-50%) scale(1.1);
     }
   }
 }
@@ -180,6 +230,11 @@
     border: 1px solid #22c55e;
     pointer-events: none;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -189,4 +244,8 @@
   font-size: 0.85rem;
   margin-top: 0.3rem;
   display: block;
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+  }
 }

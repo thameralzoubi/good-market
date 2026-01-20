@@ -17,6 +17,11 @@
   align-items: center;
   z-index: 1000;
   padding: 1rem;
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+    align-items: flex-end;
+  }
 }
 
 /* المحتوى */
@@ -30,6 +35,17 @@
   direction: rtl;
   position: relative;
   animation: modalEpicIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @media (max-width: 768px) {
+    padding: 2.5rem 2rem;
+    border-radius: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 2rem 1.5rem;
+    border-radius: 1.8rem;
+    max-width: 100%;
+  }
 }
 
 /* زر الإغلاق */
@@ -45,11 +61,24 @@
   font-size: 1.5rem;
   cursor: pointer;
   transition: all 0.25s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background: #cffafe;
     color: #0284c7;
     transform: rotate(90deg) scale(1.1);
+  }
+
+  @media (max-width: 480px) {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    font-size: 1.3rem;
   }
 }
 
@@ -60,17 +89,37 @@ h2 {
   font-weight: 900;
   margin-bottom: 2rem;
   color: #0f172a;
+  margin-top: 0;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+  }
 }
 
 /* الحقول */
 .form-group {
   margin-bottom: 1.8rem;
 
+  @media (max-width: 480px) {
+    margin-bottom: 1.5rem;
+  }
+
   label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 700;
     color: #0f172a;
+    font-size: 0.95rem;
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
   }
 
   input {
@@ -82,6 +131,13 @@ h2 {
     background: #ecfeff;
     font-size: 1rem;
     transition: all 0.3s ease;
+    min-height: 44px;
+
+    @media (max-width: 480px) {
+      height: 3.2rem;
+      font-size: 0.95rem;
+      padding: 0 1.2rem;
+    }
 
     &:hover {
       border-color: #7dd3fc;
@@ -101,26 +157,27 @@ h2 {
 .password-wrapper {
   position: relative;
   width: 100%;
-}
 
-.password-wrapper input {
-  padding-left: 3.4rem;
-}
+  input {
+    padding-left: 3.4rem;
+  }
 
-.password-wrapper .eye-icon {
-  position: absolute;
-  left: 1.2rem;
-  top: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: #38bdf8;
-  transition: color 0.25s ease;
-}
+  .eye-icon {
+    position: absolute;
+    left: 1.2rem;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #38bdf8;
+    transition: color 0.25s ease;
+    min-width: 44px;
 
-.password-wrapper .eye-icon:hover {
-  color: #0ea5e9;
+    &:hover {
+      color: #0ea5e9;
+    }
+  }
 }
 
 /* نسيت كلمة المرور */
@@ -130,9 +187,15 @@ h2 {
   color: #38bdf8;
   cursor: pointer;
   margin-bottom: 2rem;
+  transition: all 0.3s ease;
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -149,6 +212,7 @@ h2 {
   cursor: pointer;
   transition: all 0.35s ease;
   box-shadow: 0 20px 45px rgba(56, 189, 248, 0.45);
+  min-height: 48px;
 
   &:hover {
     transform: translateY(-4px);
@@ -158,44 +222,20 @@ h2 {
   &:active {
     transform: translateY(0);
   }
-}
 
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 768px) {
-  .modal-content {
-    padding: 2.5rem 2rem;
-    border-radius: 2rem;
+  @media (max-width: 768px) {
+    font-size: 1.05rem;
+    padding: 1rem;
   }
 
-  h2 {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 2rem 1.5rem;
-    border-radius: 1.8rem;
-  }
-
-  h2 {
-    font-size: 1.7rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group input {
-    height: 3.2rem;
-    font-size: 0.95rem;
-  }
-
-  .btn-login {
+  @media (max-width: 480px) {
     padding: 1rem;
     font-size: 1rem;
+    border-radius: 1.6rem;
   }
 }
 
-/* الأنيميشن */
+/* ================= ANIMATIONS ================= */
 @keyframes modalEpicIn {
   0% {
     opacity: 0;
