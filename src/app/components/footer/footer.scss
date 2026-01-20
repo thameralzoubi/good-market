@@ -1,0 +1,140 @@
+.footer {
+  background: linear-gradient(145deg, #226c8d, #06587d);
+  color: white;
+  padding: 4rem 1rem;
+  direction: rtl;
+  font-family: 'Inter', sans-serif;
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+      }
+
+      .column {
+        h4 {
+          font-size: 1.25rem;
+          margin-bottom: 1rem;
+          border-right: 4px solid #38bdf8;
+          padding-right: 0.5rem;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+
+          li a {
+            color: #e0f2fe;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+
+            &:hover {
+              color: white;
+            }
+          }
+        }
+
+        .methods {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.75rem;
+
+          .payment-card {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 0.6rem 1rem;
+            border-radius: 0.8rem;
+            font-size: 0.95rem;
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.25);
+            color: #ecfeff;
+            transition:
+              transform 0.3s ease,
+              background 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+              background: linear-gradient(145deg, #38bdf8, #7dd3fc);
+              color: white;
+              transform: translateY(-3px) scale(1.05);
+            }
+          }
+        }
+
+        .secure {
+          margin-top: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: #bae6fd;
+          font-size: 0.9rem;
+        }
+
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
+
+          .icon {
+            background: linear-gradient(145deg, #38bdf8, #7dd3fc);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+          }
+
+          h1 span {
+            color: #bae6fd;
+          }
+        }
+
+        .social {
+          display: flex;
+          gap: 0.5rem;
+          margin-top: 1rem;
+
+          a {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+
+            &:hover {
+              background: linear-gradient(145deg, #38bdf8, #7dd3fc);
+              color: white;
+            }
+
+            lucide-icon {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+
+    .copyright {
+      margin-top: 2rem;
+      text-align: center;
+      color: #e0f2fe;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      padding-top: 1rem;
+    }
+  }
+}

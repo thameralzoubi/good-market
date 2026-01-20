@@ -1,0 +1,47 @@
+<aside class="sidebar">
+  <h3>Filter Products</h3>
+
+  <!-- Search -->
+  <div class="filter-group">
+    <label>Search</label>
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      (input)="applyFilters()"
+      placeholder="Search by product name..."
+    />
+  </div>
+
+  <!-- Price -->
+  <div class="filter-group">
+    <label>Max Price</label>
+
+    <div class="price-values">
+      <span>$0</span>
+      <span>${{ maxPrice }}</span>
+    </div>
+
+    <input
+      type="range"
+      min="0"
+      [max]="maxAvailablePrice"
+      step="10"
+      [(ngModel)]="maxPrice"
+      (input)="applyFilters()"
+      class="range-slider"
+    />
+  </div>
+
+  <!-- Sort -->
+  <div class="filter-group">
+    <label>Sort By</label>
+    <select [(ngModel)]="sortBy" (change)="applyFilters()">
+      <option value="">Default</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="name-asc">Name: A → Z</option>
+    </select>
+  </div>
+
+  <button class="reset-btn" (click)="resetFilters()">Reset Filters</button>
+</aside>

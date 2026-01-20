@@ -1,0 +1,24 @@
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <div *ngIf="cartItems$ | async as items; else empty">
+    <div class="checkout-item" *ngFor="let item of items">
+      <span class="title">{{ item.product.title }}</span>
+      <span class="qty">x{{ item.quantity }}</span>
+      <span class="price"> {{ item.product.price * item.quantity }} $ </span>
+    </div>
+
+    <div class="checkout-total">
+      <strong>Total:</strong>
+      <span>{{ getTotal(items) }} $</span>
+    </div>
+
+    <button class="confirm-btn" (click)="confirmOrder()" [disabled]="items.length === 0">
+      Confirm Order
+    </button>
+  </div>
+
+  <ng-template #empty>
+    <p class="empty-text">No items to checkout.</p>
+  </ng-template>
+</div>

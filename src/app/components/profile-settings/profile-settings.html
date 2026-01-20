@@ -1,0 +1,124 @@
+<div class="settings-container">
+  <aside class="sidebar">
+    <h3>
+      <lucide-icon name="user" size="20"></lucide-icon>
+      Profile Settings
+    </h3>
+
+    <button [class.active]="activeSection === 'profile'" (click)="activeSection = 'profile'">
+      <lucide-icon name="user" size="18"></lucide-icon>
+      Profile Information
+    </button>
+
+    <button [class.active]="activeSection === 'password'" (click)="activeSection = 'password'">
+      <lucide-icon name="key" size="18"></lucide-icon>
+      Change Password
+    </button>
+
+    <button
+      class="danger"
+      [class.active]="activeSection === 'delete'"
+      (click)="activeSection = 'delete'"
+    >
+      <lucide-icon name="trash-2" size="18"></lucide-icon>
+      Delete Account
+    </button>
+  </aside>
+
+  <section class="content">
+    <!-- PROFILE -->
+    <form
+      *ngIf="activeSection === 'profile'"
+      [formGroup]="profileForm"
+      (ngSubmit)="saveProfile()"
+      class="card"
+    >
+      <label>
+        <lucide-icon name="badge" size="16"></lucide-icon>
+        First Name
+      </label>
+      <input formControlName="firstName" [readonly]="!canEditNames" />
+      <small *ngIf="!canEditNames"> You can edit your first name only after 60 second </small>
+
+      <label>
+        <lucide-icon name="badge-check" size="16"></lucide-icon>
+        Last Name
+      </label>
+      <input formControlName="lastName" [readonly]="!canEditNames" />
+      <small *ngIf="!canEditNames"> You can edit your last name only after 60 second </small>
+
+      <label>
+        <lucide-icon name="at-sign" size="16"></lucide-icon>
+        Username
+      </label>
+
+      <div class="username-wrapper">
+        <input formControlName="username" (input)="onUsernameInput($event.target.value)" />
+        <lucide-icon *ngIf="usernameValid" name="check" class="check-icon"> </lucide-icon>
+      </div>
+
+      <small class="error" *ngIf="usernameValid === false">
+        {{ usernameMessage }}
+      </small>
+
+      <label>
+        <lucide-icon name="mail" size="16"></lucide-icon>
+        Email
+      </label>
+
+      <input type="email" formControlName="email" readonly />
+
+      <button
+        type="submit"
+        class="primary"
+        [disabled]="profileForm.invalid || usernameValid !== true"
+      >
+        <lucide-icon name="save" size="18"></lucide-icon>
+        Save Changes
+      </button>
+    </form>
+
+    <!-- PASSWORD -->
+    <form
+      *ngIf="activeSection === 'password'"
+      [formGroup]="passwordForm"
+      (ngSubmit)="changePassword()"
+      class="card"
+    >
+      <label>
+        <lucide-icon name="lock" size="16"></lucide-icon>
+        Current Password
+      </label>
+      <input type="password" formControlName="currentPassword" />
+
+      <label>
+        <lucide-icon name="key-round" size="16"></lucide-icon>
+        New Password
+      </label>
+      <input type="password" formControlName="newPassword" />
+
+      <label>
+        <lucide-icon name="check-circle" size="16"></lucide-icon>
+        Confirm New Password
+      </label>
+      <input type="password" formControlName="confirmPassword" />
+
+      <button type="submit" class="primary">
+        <lucide-icon name="refresh-cw" size="18"></lucide-icon>
+        Update Password
+      </button>
+    </form>
+
+    <!-- DELETE -->
+    <div *ngIf="activeSection === 'delete'" class="card danger-card">
+      <p>
+        <lucide-icon name="alert-triangle" size="18"></lucide-icon>
+        This action is permanent and cannot be undone.
+      </p>
+      <button class="danger" (click)="deleteAccount()">
+        <lucide-icon name="trash-2" size="18"></lucide-icon>
+        Delete Account
+      </button>
+    </div>
+  </section>
+</div>

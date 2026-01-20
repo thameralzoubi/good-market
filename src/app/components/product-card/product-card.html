@@ -1,0 +1,35 @@
+<div class="product-card">
+  <!-- Image Slider -->
+  <div class="image-slider">
+    <button class="nav prev" *ngIf="product.images.length > 1" (click)="prevImage()">‹</button>
+
+    <!-- الصورة الحالية -->
+    <ng-container *ngIf="product.images.length">
+      <img [src]="product.images[currentImageIndex]" [alt]="product.title" />
+    </ng-container>
+
+    <button class="nav next" *ngIf="product.images.length > 1" (click)="nextImage()">›</button>
+  </div>
+
+  <!-- Dots -->
+  <div class="dots" *ngIf="product.images.length > 1">
+    <span
+      *ngFor="let img of product.images; let i = index"
+      [class.active]="i === currentImageIndex"
+      (click)="goToImage(i)"
+    >
+    </span>
+  </div>
+
+  <!-- Info -->
+  <div class="product-info">
+    <h3>{{ product.title }}</h3>
+    <p class="price">{{ product.price }} $</p>
+  </div>
+
+  <!-- Buttons -->
+  <div class="product-actions">
+    <button class="add-btn" (click)="addToCartClick()">Add to Cart</button>
+    <button class="details-btn" (click)="goToDetails()">View Details</button>
+  </div>
+</div>

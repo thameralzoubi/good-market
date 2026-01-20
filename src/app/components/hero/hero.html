@@ -1,0 +1,37 @@
+<section class="hero">
+  <!-- Background Slider -->
+  <div class="bg-slider">
+    <div
+      class="bg-slide"
+      *ngFor="let img of heroImages; let i = index"
+      [class.active]="i === currentBgIndex"
+    >
+      <img [src]="img" [alt]="'Hero Image ' + (i + 1)" />
+      <div class="overlay"></div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <h2>Everything You Need, <span>In One Place</span></h2>
+
+    <p>
+      Enjoy a unique shopping experience with fast delivery and guaranteed top quality products.
+    </p>
+
+    <!-- Search Box -->
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search for product, brand, or category..."
+        [(ngModel)]="searchTerm"
+      />
+      <lucide-icon
+        name="search"
+        [size]="22"
+        class="search-icon"
+        (click)="performSearch()"
+      ></lucide-icon>
+    </div>
+  </div>
+</section>

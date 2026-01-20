@@ -1,0 +1,33 @@
+<h2>{{ category }}</h2>
+
+<div class="page-layout">
+  <!-- المنتجات -->
+  <div class="products-section">
+    <div class="product-list" *ngIf="filteredProducts.length > 0; else noResults">
+      <app-product-card
+        *ngFor="let product of filteredProducts"
+        [product]="product"
+        (addToCart)="onAddToCart($event)"
+      >
+      </app-product-card>
+    </div>
+
+    <ng-template #noResults>
+      <div class="no-results">
+        <h3>No products found</h3>
+        <p *ngIf="allProducts.length > 0">Try adjusting your filters or resetting them.</p>
+        <p *ngIf="allProducts.length === 0">No products available in this category.</p>
+
+        <button (click)="resetAllFilters()">Reset Filters</button>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- السايدبار -->
+  <app-product-filter
+    class="sidebar"
+    [maxAvailablePrice]="maxPriceInProducts"
+    (filterChange)="applyFilters($event)"
+  >
+  </app-product-filter>
+</div>

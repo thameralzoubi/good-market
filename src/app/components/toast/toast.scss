@@ -1,0 +1,50 @@
+.toast-container {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+}
+
+.toast {
+  min-width: 280px;
+  padding: 1rem 1.5rem;
+  border-radius: 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  animation:
+    slideDown 0.5s ease,
+    fadeOut 0.5s ease 3.5s forwards;
+}
+
+/* ألوان حسب نوع الرسالة */
+.toast.success {
+  background: linear-gradient(135deg, #22c55e, #15803d);
+} /* أخضر */
+.toast.error {
+  background: linear-gradient(135deg, #ef4444, #991b1b);
+} /* أحمر */
+.toast.info {
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+} /* أزرق */
+
+/* أنيميشن */
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}

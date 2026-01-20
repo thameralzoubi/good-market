@@ -1,0 +1,84 @@
+<header class="header" (click)="closeDropdown()">
+  <div class="container">
+    <!-- Logo -->
+    <div class="logo" routerLink="/">
+      <div class="logo-icon">
+        <lucide-icon name="shopping-bag" [size]="28"></lucide-icon>
+      </div>
+      <h1>Good <span>Market</span></h1>
+    </div>
+
+    <!-- Global Search (not home) -->
+    <div class="header-search" *ngIf="!isHomePage">
+      <input
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="performSearch()"
+      />
+      <lucide-icon name="search" [size]="20" (click)="performSearch()"> </lucide-icon>
+    </div>
+
+    <!-- Logged User -->
+    <div class="actions" *ngIf="user$ | async as user; else guest">
+      <div class="user-area">
+        <span class="username" (click)="toggleDropdown($event)">
+          {{ user.username }}
+        </span>
+
+        <div class="dropdown" [class.open]="dropdownOpen">
+          <button class="dropdown-item" routerLink="/profile-settings">
+            <lucide-icon name="settings" [size]="18"></lucide-icon>
+            Profile Settings
+          </button>
+
+          <div class="dropdown-divider"></div>
+
+          <button routerLink="/home" class="dropdown-item danger" (click)="logout()">
+            <lucide-icon name="log-out" [size]="18"></lucide-icon>
+            Logout
+          </button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Cart -->
+      <button class="icon-btn cart" (click)="goToCart()">
+        <lucide-icon name="shopping-bag" [size]="22"></lucide-icon>
+        <span class="badge">
+          {{ (cartService.cartItems$ | async)?.length || 0 }}
+        </span>
+      </button>
+    </div>
+
+    <!-- Guest -->
+    <ng-template #guest>
+      <div class="actions">
+        <button (click)="openLoginModal()" class="btn ghost">
+          <lucide-icon name="user" [size]="20"></lucide-icon>
+          <span>Login</span>
+        </button>
+
+        <button class="btn primary" routerLink="/signup">
+          <lucide-icon name="user-plus" [size]="20"></lucide-icon>
+          <span>Sign Up</span>
+        </button>
+
+        <div class="divider"></div>
+
+        <button class="icon-btn cart" (click)="goToCart()">
+          <lucide-icon name="shopping-bag" [size]="22"></lucide-icon>
+          <span class="badge">
+            {{ (cartService.cartItems$ | async)?.length || 0 }}
+          </span>
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</header>
+
+<!-- Login Modal -->
+<ng-container *ngIf="showLoginModal">
+  <app-login-modal (close)="closeLoginModal()"></app-login-modal>
+</ng-container>

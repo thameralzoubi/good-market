@@ -1,0 +1,222 @@
+.product-card {
+  width: 240px;
+  padding: 1rem;
+  border-radius: 2rem;
+  background: radial-gradient(120% 120% at 0% 0%, #ffffff 0%, #f4f6fb 60%, #eef1f8 100%);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Glass shine */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.5), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-14px) scale(1.03);
+    box-shadow:
+      0 35px 80px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .image-slider img {
+      transform: scale(1.08) rotate(-1deg);
+    }
+  }
+
+  /* ================= IMAGE ================= */
+  .image-slider {
+    position: relative;
+    height: 220px;
+    border-radius: 1.6rem;
+    background: linear-gradient(145deg, #e8ecf5, #f9fbff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: inset 0 8px 20px rgba(0, 0, 0, 0.08);
+
+    img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      transition: transform 0.45s ease;
+      filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.25));
+      pointer-events: none;
+    }
+
+    .nav {
+      position: absolute;
+      top: 90%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #38bdf8; /* تم تعديل اللون من أزرق غامق إلى سماوي فاتح */
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.35s ease;
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      z-index: 5;
+    }
+
+    .prev {
+      left: -2px;
+    }
+    .next {
+      right: -2px;
+    }
+
+    &:hover .nav {
+      opacity: 1;
+    }
+  }
+
+  /* ================= DOTS ================= */
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0.7rem 0;
+
+    span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #c7cbe3;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &.active {
+        width: 16px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #38bdf8, #7dd3fc); /* تعديل الألوان */
+      }
+    }
+  }
+
+  /* ================= INFO ================= */
+  .product-info {
+    text-align: center;
+    margin: 0.7rem 0;
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.2px;
+      margin-bottom: 0.3rem;
+    }
+
+    .price {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #38bdf8; /* تعديل اللون من أزرق غامق إلى سماوي فاتح */
+      background: none;
+      -webkit-text-fill-color: #38bdf8;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  /* ================= ACTIONS ================= */
+  .product-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: auto;
+
+    button {
+      flex: 1;
+      padding: 0.75rem;
+      border-radius: 1.2rem;
+      font-weight: 800;
+      font-size: 0.85rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .add-btn {
+      background: linear-gradient(145deg, #38bdf8, #0ea5e9); /* تعديل الألوان */
+      color: #fff;
+      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 45px rgba(56, 189, 248, 0.65);
+      }
+    }
+
+    .details-btn {
+      background: linear-gradient(145deg, #ffffff, #e5e7eb);
+      color: #38bdf8; /* تعديل اللون */
+      box-shadow: inset 0 0 0 2px rgba(56, 189, 248, 0.25);
+
+      &:hover {
+        background: linear-gradient(145deg, #38bdf8, #0ea5e9); /* تعديل الألوان */
+        color: #fff;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .product-card {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .product-card .image-slider {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    padding: 0.8rem;
+    border-radius: 1.6rem;
+  }
+
+  .product-card .image-slider {
+    height: 180px;
+  }
+
+  .product-card .product-info h3 {
+    font-size: 0.95rem;
+  }
+
+  .product-card .price {
+    font-size: 1rem;
+  }
+}

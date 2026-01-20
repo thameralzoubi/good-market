@@ -1,0 +1,153 @@
+.sidebar {
+  --primary: #38bdf8; /* تعديل اللون الأساسي */
+  --primary-soft: rgba(56, 189, 248, 0.12); /* تعديل التدرج */
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  width: 400px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  max-height: calc(100vh - 100px); /* يمنع الدخول على الفوتر */
+  overflow-y: auto; /* يسمح بالتمرير داخل السايدبار إذا كان طويل */
+  padding: 1.6rem 1.5rem;
+  background: linear-gradient(160deg, #ffffff 0%, #f1f5ff 100%);
+
+  backdrop-filter: blur(14px);
+  border-radius: 1.4rem;
+  padding: 1.6rem 1.5rem;
+
+  box-shadow:
+    0 30px 60px rgba(56, 189, 248, 0.15),
+    /* تعديل اللون */ inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #1e293b;
+    letter-spacing: 0.04em;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--primary-soft); /* تعديل اللون */
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    input,
+    select {
+      padding: 0.7rem 0.75rem;
+      border-radius: 0.85rem;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+
+      &:focus {
+        border-color: var(--primary); /* تعديل اللون */
+        box-shadow: 0 0 0 4px var(--primary-soft); /* تعديل اللون */
+      }
+    }
+  }
+
+  /* ===== Price ===== */
+  .price-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .range-slider {
+    height: 6px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--primary) 0%, #c7d2fe 100%); /* تعديل اللون */
+    outline: none;
+    cursor: pointer;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--primary); /* تعديل اللون */
+      box-shadow: 0 6px 15px rgba(56, 189, 248, 0.45); /* تعديل اللون */
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.15);
+      }
+    }
+  }
+
+  /* ===== Reset Button ===== */
+  .reset-btn {
+    margin-top: auto;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 1rem;
+
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%); /* تعديل الألوان */
+
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(56, 189, 248, 0.45); /* تعديل اللون */
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    bottom: 0;
+    top: auto;
+    right: 0;
+    border-radius: 1.4rem 1.4rem 0 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 1.2rem;
+  }
+
+  .sidebar h3 {
+    font-size: 1rem;
+  }
+}

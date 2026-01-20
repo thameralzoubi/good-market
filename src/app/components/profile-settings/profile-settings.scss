@@ -1,0 +1,288 @@
+/* Theme Colors */
+$primary-blue: #38bdf8; /* تعديل اللون */
+$dark-blue: #0ea5e9; /* تعديل اللون */
+$light-blue: #eff6ff;
+$gray-bg: #f3f4f6;
+$text-dark: #1f2937;
+$text-muted: #6b7280;
+$danger: #dc2626;
+
+.settings-container {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+}
+@media (max-width: 1024px) {
+  .settings-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 24px;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 16px;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  width: 270px;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  padding: 28px;
+  border-right: 1px solid #e5e7eb;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.04);
+
+  h3 {
+    margin-bottom: 28px;
+    font-weight: 700;
+    color: $text-dark;
+    letter-spacing: 0.3px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    background: transparent;
+    border: none;
+    border-radius: 14px;
+    text-align: left;
+    cursor: pointer;
+    font-weight: 600;
+    color: $text-muted;
+    transition: all 0.25s ease;
+
+    &:hover {
+      background: $light-blue;
+      color: $primary-blue; /* تعديل اللون */
+      transform: translateX(4px);
+    }
+
+    &.active {
+      background: linear-gradient(135deg, $primary-blue, $dark-blue); /* تعديل الألوان */
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35); /* تعديل اللون */
+    }
+
+    &.danger {
+      color: $danger;
+
+      &:hover {
+        background: rgba(220, 38, 38, 0.08);
+        transform: translateX(4px);
+      }
+    }
+  }
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 48px;
+}
+
+/* Cards */
+.card {
+  background: #ffffff;
+  padding: 32px;
+  max-width: 440px;
+  border-radius: 22px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  animation: fadeUp 0.4s ease;
+
+  label {
+    display: block;
+    margin-top: 18px;
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 8px;
+    border-radius: 14px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    transition: all 0.25s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-blue; /* تعديل اللون */
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15); /* تعديل اللون */
+    }
+
+    &[readonly] {
+      background: #f3f4f6;
+      cursor: not-allowed;
+    }
+  }
+
+  small {
+    color: $danger;
+    font-size: 12px;
+  }
+
+  button {
+    margin-top: 30px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+  }
+
+  .primary {
+    background: linear-gradient(135deg, $primary-blue, $dark-blue); /* تعديل الألوان */
+    color: #fff;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4); /* تعديل اللون */
+    }
+  }
+}
+
+/* Delete Card */
+.danger-card {
+  border: 1px solid rgba(220, 38, 38, 0.25);
+
+  p {
+    color: $text-muted;
+    font-weight: 500;
+  }
+
+  .danger {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    color: #fff;
+
+    &:hover {
+      box-shadow: 0 12px 30px rgba(220, 38, 38, 0.4);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+/* Lucide Icons Global */
+lucide-icon {
+  stroke-width: 2;
+  vertical-align: middle;
+}
+
+/* Sidebar icons */
+.sidebar {
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    lucide-icon {
+      transition: transform 0.25s ease;
+    }
+
+    &:hover lucide-icon {
+      transform: scale(1.1);
+    }
+
+    &.active lucide-icon {
+      color: #ffffff;
+    }
+  }
+}
+
+/* Form labels with icons */
+.card label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  lucide-icon {
+    color: $primary-blue; /* تعديل اللون */
+  }
+}
+
+/* Buttons with icons */
+.card button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Username wrapper and check icon */
+.username-wrapper {
+  position: relative;
+
+  input {
+    padding-right: 38px;
+  }
+
+  .check-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #22c55e;
+    background: #d1fae5;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    lucide-icon {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

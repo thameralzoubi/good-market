@@ -1,0 +1,183 @@
+.hero {
+  position: relative;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+
+  .bg-slider {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.05);
+      transition:
+        opacity 1.5s ease-in-out,
+        transform 1.5s ease-in-out;
+
+      &.active {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.65);
+      }
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgb(29 85 96 / 31%), rgba(0, 159, 181, 0.25));
+        backdrop-filter: blur(2px);
+      }
+    }
+  }
+
+  @keyframes fadeZoom {
+    0%,
+    33.333% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    33.334%,
+    100% {
+      opacity: 0;
+      transform: scale(1.1);
+    }
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    padding: 0 20px;
+    text-align: center;
+
+    h2 {
+      font-size: 52px;
+      font-weight: 900;
+      margin-bottom: 20px;
+
+      span {
+        color: #00d5ff;
+      }
+    }
+
+    p {
+      font-size: 18px;
+      color: #e6fbff;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .search-box {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+
+      input {
+        width: 100%;
+        padding: 18px 50px 18px 20px;
+        border-radius: 30px;
+        border: none;
+        font-size: 16px;
+        outline: none;
+        box-shadow: 0 12px 40px rgba(0, 213, 255, 0.35);
+        transition: all 0.3s ease;
+
+        &:focus {
+          box-shadow: 0 15px 50px rgba(0, 213, 255, 0.55);
+        }
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #00d5ff;
+        stroke-width: 2;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: #009bb5;
+        }
+      }
+    }
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+  .hero {
+    height: 500px;
+  }
+
+  .hero .content h2 {
+    font-size: 44px;
+  }
+
+  .hero .content p {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 450px;
+  }
+
+  .hero .content h2 {
+    font-size: 36px;
+  }
+
+  .hero .content p {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .hero .content .search-box {
+    max-width: 100%;
+  }
+
+  .hero .content .search-box input {
+    padding: 16px 45px 16px 18px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 400px;
+  }
+
+  .hero .content h2 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .hero .content p {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .hero .content .search-box input {
+    padding: 14px 42px 14px 16px;
+    font-size: 14px;
+  }
+
+  .hero .content .search-icon {
+    right: 12px;
+  }
+}

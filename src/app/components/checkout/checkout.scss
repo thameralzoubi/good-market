@@ -1,0 +1,116 @@
+.checkout-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 2rem;
+  background: #ecfeff;
+  box-shadow: 0 25px 60px rgba(56, 189, 248, 0.18);
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #38bdf8;
+    margin-bottom: 1.5rem;
+  }
+
+  .checkout-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.12);
+
+    .title {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .qty {
+      font-weight: 700;
+      color: #6b7280;
+    }
+
+    .price {
+      font-weight: 800;
+      color: #38bdf8;
+    }
+  }
+
+  .checkout-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .confirm-btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    border: none;
+    background: linear-gradient(145deg, #38bdf8, #7dd3fc);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(56, 189, 248, 0.6);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .empty-text {
+    text-align: center;
+    color: #6b7280;
+    padding: 2rem 0;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .checkout-container {
+    padding: 1.5rem;
+  }
+
+  .checkout-item {
+    flex-direction: column;
+    gap: 0.3rem;
+    text-align: center;
+  }
+
+  .checkout-total {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-container {
+    padding: 1.2rem;
+    border-radius: 1.5rem;
+  }
+
+  .checkout-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .checkout-total {
+    font-size: 1.05rem;
+  }
+
+  .confirm-btn {
+    font-size: 0.95rem;
+    padding: 0.9rem;
+  }
+}

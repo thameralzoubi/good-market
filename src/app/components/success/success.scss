@@ -1,0 +1,81 @@
+.success-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #f0f9ff;
+  border-radius: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  text-align: center;
+
+  h2 {
+    color: #38bdf8;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #374151;
+  }
+
+  .order-info {
+    margin: 1.5rem 0;
+
+    p {
+      font-weight: 700;
+    }
+  }
+
+  button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    font-weight: 700;
+    background: linear-gradient(135deg, #38bdf8, #7dd3fc);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+    }
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .success-container {
+    margin: 3rem 1.5rem;
+    padding: 1.8rem;
+  }
+
+  .success-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .success-container p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .success-container {
+    margin: 2rem 1rem;
+    padding: 1.4rem;
+    border-radius: 1.5rem;
+  }
+
+  .success-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .success-container p {
+    font-size: 0.9rem;
+  }
+
+  .success-container button {
+    width: 100%;
+  }
+}

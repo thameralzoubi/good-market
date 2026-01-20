@@ -1,0 +1,11 @@
+<div class="success-container" *ngIf="order">
+  <h2>Order Confirmed!</h2>
+  <p>Thank you for your purchase.</p>
+  <div class="order-info">
+    <p><strong>Order ID:</strong> {{ order.id }}</p>
+    <p><strong>Total:</strong> {{ order.total }} $</p>
+    <p><strong>Items:</strong> {{ order.items.length }}</p>
+    <p><strong>Date:</strong> {{ order.date | date: 'short' }}</p>
+  </div>
+  <button (click)="backToHome()">Back to Home</button>
+</div>

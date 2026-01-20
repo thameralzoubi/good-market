@@ -1,0 +1,109 @@
+<div class="product-detail" *ngIf="!loading; else loadingTemplate">
+  <!-- ====== قسم الصور (سلايدر المنتج) ====== -->
+  <div class="images-section">
+    <div class="image-slider">
+      <button class="nav prev" *ngIf="product.images.length > 1" (click)="prevImage()">‹</button>
+      <img [src]="product.images[currentImageIndex]" [alt]="product.title" />
+      <button class="nav next" *ngIf="product.images.length > 1" (click)="nextImage()">›</button>
+    </div>
+
+    <div class="dots" *ngIf="product.images.length > 1">
+      <span
+        *ngFor="let img of product.images; let i = index"
+        [class.active]="i === currentImageIndex"
+        (click)="goToImage(i)"
+      >
+      </span>
+    </div>
+  </div>
+
+  <!-- ====== قسم تفاصيل المنتج ====== -->
+  <div class="details-section">
+    <!-- عنوان المنتج -->
+    <h2>{{ product.title }}</h2>
+
+    <!-- الفئة + العلامة التجارية -->
+    <p class="category">
+      <lucide-icon name="tag" size="16"></lucide-icon>
+      {{ product.category }} • {{ product.brand }}
+    </p>
+
+    <!-- السعر + الخصم -->
+    <div class="price-box">
+      <span class="final-price">{{ discountedPrice }} $</span>
+
+      <span class="old-price" *ngIf="product.discountPercentage"> {{ product.price }} $ </span>
+
+      <span class="discount" *ngIf="product.discountPercentage">
+        -{{ product.discountPercentage }}%
+      </span>
+    </div>
+
+    <!-- التقييم -->
+    <div class="rating">
+      <lucide-icon name="star" size="18"></lucide-icon>
+      <span>{{ product.rating }} / 5</span>
+    </div>
+
+    <!-- حالة التوفر -->
+    <div class="stock" [class.out]="product.stock === 0">
+      <lucide-icon [name]="product.stock > 0 ? 'check-circle' : 'x-circle'" size="18">
+      </lucide-icon>
+      {{ product.stock > 0 ? 'In Stock' : 'Out of Stock' }}
+    </div>
+
+    <!-- وصف المنتج -->
+    <p class="description">{{ product.description }}</p>
+
+    <!-- التحكم بالكمية -->
+    <div class="quantity-control">
+      <button (click)="decrementQuantity()">-</button>
+      <span>{{ quantity }}</span>
+      <button (click)="incrementQuantity()">+</button>
+    </div>
+
+    <!-- زر الإضافة للسلة -->
+    <button class="add-cart-btn" (click)="addToCart()">Add to Cart</button>
+
+    <!-- ====== معلومات إضافية (تعزز الثقة) ====== -->
+    <div class="info-box">
+      <div>
+        <lucide-icon name="truck" size="20"></lucide-icon>
+        <span>Fast Shipping</span>
+      </div>
+      <div>
+        <lucide-icon name="shield-check" size="20"></lucide-icon>
+        <span>1 Year Warranty</span>
+      </div>
+      <div>
+        <lucide-icon name="rotate-ccw" size="20"></lucide-icon>
+        <span>Easy Returns</span>
+      </div>
+    </div>
+
+    <!-- ====== المواصفات الأساسية ====== -->
+    <div class="specs">
+      <h3>Specifications</h3>
+      <ul>
+        <li><strong>Brand:</strong> {{ product.brand }}</li>
+        <li><strong>SKU:</strong> {{ product.sku }}</li>
+        <li><strong>Stock:</strong> {{ product.stock }}</li>
+      </ul>
+    </div>
+
+    <!-- ====== مراجعات مختصرة ====== -->
+    <div class="reviews" *ngIf="product.reviews?.length">
+      <h3>Customer Reviews</h3>
+
+      <div class="review" *ngFor="let r of product.reviews | slice: 0 : 2">
+        <strong>{{ r.reviewerName }}</strong>
+        <span>({{ r.rating }}/5)</span>
+        <p>{{ r.comment }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <p>Loading product details...</p>
+</ng-template>

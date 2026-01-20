@@ -1,6 +1,107 @@
+import 'zone.js';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { importProvidersFrom } from '@angular/core';
 import { App } from './app/app';
+import { routes } from './app/app.routes';
+import { provideRouter } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+import {
+  LucideAngularModule,
+  User,
+  UserPlus,
+  Heart,
+  ShoppingBag,
+  Search,
+  Facebook,
+  Instagram,
+  Twitter,
+  CreditCard,
+  Smartphone,
+  CheckCircle,
+  Eye,
+  EyeOff,
+  Sparkles,
+  Flower,
+  Sofa,
+  ShoppingCart,
+  Laptop,
+  Home,
+  Droplet,
+  Shirt,
+  Footprints,
+  Watch,
+  Glasses,
+  Car,
+  Bike,
+  Star,
+  Check,
+  Lightbulb,
+  Key,
+  KeyRound,
+  Lock,
+  Trash2,
+  Save,
+  RefreshCw,
+  AlertTriangle,
+  Badge,
+  BadgeCheck,
+  AtSign,
+  Linkedin,
+  MessageCircle,
+} from 'lucide-angular';
+
+bootstrapApplication(App, {
+  providers: [
+    importProvidersFrom(
+      LucideAngularModule.pick({
+        User,
+        UserPlus,
+        Heart,
+        ShoppingBag,
+        Search,
+        Facebook,
+        Instagram,
+        Twitter,
+        CreditCard,
+        Smartphone,
+        CheckCircle,
+        Eye,
+        EyeOff,
+        Sparkles,
+        Flower,
+        Sofa,
+        ShoppingCart,
+        Laptop,
+        Home,
+        Droplet,
+        Shirt,
+        Footprints,
+        Watch,
+        Glasses,
+        Car,
+        Bike,
+        Star,
+        Check,
+        Lightbulb,
+
+        Key,
+        KeyRound,
+        Lock,
+        Trash2,
+        Save,
+        RefreshCw,
+        AlertTriangle,
+        Badge,
+        BadgeCheck,
+        AtSign,
+        Linkedin,
+        MessageCircle,
+      }),
+    ),
+    provideRouter(routes),
+    importProvidersFrom(BrowserAnimationsModule),
+    provideHttpClient(),
+  ],
+}).catch((err) => console.error(err));

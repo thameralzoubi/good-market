@@ -1,0 +1,20 @@
+<section class="categories">
+  <div class="container">
+    <h3>Shop by Category</h3>
+
+    <div class="grid">
+      <div *ngFor="let cat of categories" class="card" [routerLink]="['/product', cat.key]">
+        <div class="decor-circle" [ngStyle]="{ 'background-color': cat.color }"></div>
+
+        <div class="card-content">
+          <div class="card-icon" [ngStyle]="{ 'background-color': cat.color }">
+            <lucide-icon [name]="cat.icon" [size]="28"></lucide-icon>
+          </div>
+
+          <h4>{{ cat.name }}</h4>
+          <p class="p1">{{ cat.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
