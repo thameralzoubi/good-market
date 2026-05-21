@@ -1,11 +1,13 @@
+@import '../../../scss/variables.scss';
+@import '../../../scss/mixins.scss';
+
 .product-card {
   width: 240px;
-  padding: 1rem;
-  border-radius: 2rem;
-  background: radial-gradient(120% 120% at 0% 0%, #ffffff 0%, #f4f6fb 60%, #eef1f8 100%);
-  box-shadow:
-    0 25px 60px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  padding: $spacing-lg;
+  border-radius: $radius-2xl;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -19,53 +21,53 @@
   @media (max-width: 768px) {
     width: 100%;
     max-width: 320px;
-    padding: 0.9rem;
+    padding: $spacing-md;
   }
 
   @media (max-width: 480px) {
     max-width: 100%;
     width: 100%;
-    padding: 0.8rem;
-    border-radius: 1.6rem;
+    padding: $spacing-md;
+    border-radius: $radius-xl;
   }
 
-  /* Glass shine */
+  /* Glass shine effect */
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.5), transparent 70%);
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.1), transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
     pointer-events: none;
   }
 
   &:hover {
-    transform: translateY(-14px) scale(1.03);
-    box-shadow:
-      0 35px 80px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--shadow-2xl);
+    border-color: var(--color-primary);
 
     &::before {
       opacity: 1;
     }
 
     .image-slider img {
-      transform: scale(1.08) rotate(-1deg);
+      transform: scale(1.08);
     }
   }
 
-  /* ================= IMAGE ================= */
+  /* ================= IMAGE SLIDER ================= */
   .image-slider {
     position: relative;
     height: 220px;
-    border-radius: 1.6rem;
-    background: linear-gradient(145deg, #e8ecf5, #f9fbff);
+    border-radius: $radius-xl;
+    background: var(--color-bg-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     box-shadow: inset 0 8px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-border);
 
     @media (max-width: 768px) {
       height: 200px;
@@ -80,7 +82,7 @@
       height: 180px;
       object-fit: contain;
       transition: transform 0.45s ease;
-      filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.25));
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
       pointer-events: none;
 
       @media (max-width: 480px) {
@@ -91,40 +93,43 @@
 
     .nav {
       position: absolute;
-      top: 90%;
+      top: 50%;
       transform: translateY(-50%);
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      border-radius: $radius-full;
       border: none;
-      background: rgba(255, 255, 255, 0.35);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      color: #38bdf8;
-      font-size: 1.5rem;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      color: var(--color-primary);
+      font-size: 1.25rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: all 0.35s ease;
-      box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      transition: all $transition-base ease;
       z-index: 5;
       min-width: 44px;
       min-height: 44px;
 
       &:hover {
+        background: var(--color-primary);
+        color: white;
         transform: translateY(-50%) scale(1.1);
+      }
+
+      &:active {
+        transform: translateY(-50%) scale(0.95);
       }
     }
 
     .prev {
-      left: -2px;
+      left: $spacing-sm;
     }
+
     .next {
-      right: -2px;
+      right: $spacing-sm;
     }
 
     &:hover .nav {
@@ -132,56 +137,78 @@
     }
   }
 
-  /* ================= DOTS ================= */
+  /* ================= DOTS/INDICATORS ================= */
   .dots {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin: 0.7rem 0;
+    gap: $spacing-sm;
+    margin: $spacing-md 0;
+    padding: 0 $spacing-sm;
 
     span {
       width: 7px;
       height: 7px;
-      border-radius: 50%;
-      background: #c7cbe3;
-      transition: all 0.3s ease;
+      border-radius: $radius-full;
+      background: var(--color-border);
+      transition: all $transition-base ease;
       cursor: pointer;
+
+      &:hover {
+        background: var(--color-primary-light);
+      }
 
       &.active {
         width: 16px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, #38bdf8, #7dd3fc);
+        border-radius: $radius-full;
+        background: var(--gradient-primary);
       }
     }
   }
 
-  /* ================= INFO ================= */
+  /* ================= PRODUCT INFO ================= */
   .product-info {
     text-align: center;
-    margin: 0.7rem 0;
+    margin: $spacing-md 0;
+    flex: 1;
 
     h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: 0.2px;
-      margin-bottom: 0.3rem;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
+      color: var(--color-text-primary);
+      letter-spacing: $letter-spacing-tight;
+      margin-bottom: $spacing-xs;
+      line-height: $line-height-tight;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
 
       @media (max-width: 480px) {
-        font-size: 0.95rem;
+        font-size: $font-size-base;
       }
     }
 
     .price {
-      font-size: 1.15rem;
-      font-weight: 900;
-      color: #38bdf8;
-      background: none;
-      -webkit-text-fill-color: #38bdf8;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-black;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
 
       @media (max-width: 480px) {
-        font-size: 1rem;
+        font-size: $font-size-lg;
+      }
+    }
+
+    .rating {
+      font-size: $font-size-sm;
+      color: var(--color-text-muted);
+      margin-top: $spacing-xs;
+
+      .stars {
+        color: var(--color-warning-text);
       }
     }
   }
@@ -189,41 +216,44 @@
   /* ================= ACTIONS ================= */
   .product-actions {
     display: flex;
-    gap: 0.6rem;
-    margin-top: auto;
+    gap: $spacing-sm;
+    margin-top: $spacing-lg;
 
     button {
       flex: 1;
-      padding: 0.75rem;
-      border-radius: 1.2rem;
-      font-weight: 800;
-      font-size: 0.85rem;
+      padding: $spacing-md $spacing-sm;
+      border-radius: $radius-lg;
+      font-weight: $font-weight-semibold;
+      font-size: $font-size-sm;
       border: none;
       cursor: pointer;
-      transition: all 0.35s ease;
+      transition: all $transition-base ease;
       position: relative;
       overflow: hidden;
-      min-height: 40px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:active {
         transform: scale(0.95);
       }
 
       @media (max-width: 480px) {
-        padding: 0.65rem;
-        font-size: 0.75rem;
-        min-height: 36px;
+        padding: $spacing-sm;
+        font-size: $font-size-xs;
+        min-height: 40px;
       }
     }
 
     .add-btn {
-      background: linear-gradient(145deg, #38bdf8, #0ea5e9);
-      color: #fff;
-      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5);
+      background: var(--gradient-primary);
+      color: var(--color-on-primary);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 20px 45px rgba(56, 189, 248, 0.65);
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
       }
 
       @media (max-width: 480px) {
@@ -234,19 +264,17 @@
     }
 
     .details-btn {
-      background: linear-gradient(145deg, #ffffff, #e5e7eb);
-      color: #38bdf8;
-      box-shadow: inset 0 0 0 2px rgba(56, 189, 248, 0.25);
+      background: var(--color-bg-secondary);
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
 
       &:hover {
-        background: linear-gradient(145deg, #38bdf8, #0ea5e9);
-        color: #fff;
+        background: var(--color-primary);
+        color: white;
       }
 
       @media (max-width: 480px) {
-        &:hover {
-          background: linear-gradient(145deg, #38bdf8, #0ea5e9);
-        }
+        border-width: 1px;
       }
     }
   }

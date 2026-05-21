@@ -1,0 +1,490 @@
+// src/scss/_variables.scss
+// ============================================================
+// 🎨 DESIGN SYSTEM & TOKENS - Complete Light/Dark Mode
+// ============================================================
+
+// ============================================================
+// 🎨 PRIMARY COLORS - Brand Identity
+// ============================================================
+$primary-cyan: #06b6d4; // Primary brand color (light mode)
+$primary-cyan-dark: #0891b2; // Darker variant
+$primary-cyan-light: #22d3ee; // Lighter variant
+$primary-cyan-lighter: #67e8f9; // Much lighter
+$primary-cyan-lightest: #cffafe; // Barely visible
+
+// Secondary Accent
+$accent-purple: #8b5cf6;
+$accent-purple-light: #a78bfa;
+$accent-teal: #14b8a6;
+
+// ============================================================
+// 🌍 LIGHT MODE - SCSS Variables (for compile-time use)
+// ============================================================
+
+// Text Colors (Light Mode)
+$text-primary-light: #111827;
+$text-secondary-light: #4b5563;
+$text-tertiary-light: #475569;
+$text-muted-light: #6b7280;
+$text-light-light: #9ca3af;
+$text-lighter-light: #d1d5db;
+
+// Background Colors (Light Mode)
+$bg-white: #ffffff;
+$bg-light: #f5f7fa;
+$bg-lighter: #f8fafc;
+$bg-lightest: #eef2ff;
+
+// Borders (Light Mode)
+$border-light: #e5e7eb;
+$border-lighter: #f3f4f6;
+$border-dark: #cbd5e1;
+
+// Semantic Colors (Light Mode)
+$success-light-bg: #ecfdf5;
+$success-light-border: #d1fae5;
+$success-light-text: #047857;
+
+$danger-light-bg: #fef2f2;
+$danger-light-border: #fee2e2;
+$danger-light-text: #dc2626;
+
+$warning-light-bg: #fffbeb;
+$warning-light-border: #fef3c7;
+$warning-light-text: #b45309;
+
+$info-light-bg: #eff6ff;
+$info-light-border: #dbeafe;
+$info-light-text: #1e40af;
+
+// ============================================================
+// 🌙 DARK MODE - SCSS Variables
+// ============================================================
+
+// Text Colors (Dark Mode)
+$text-primary-dark: #f8fafc;
+$text-secondary-dark: #cbd5e1;
+$text-tertiary-dark: #cbd5e1;
+$text-muted-dark: #94a3b8;
+$text-light-dark: #64748b;
+$text-lighter-dark: #475569;
+
+// Background Colors (Dark Mode)
+$bg-primary-dark: #0f172a; // Navy-like dark background
+$bg-secondary-dark: #1e293b;
+$bg-tertiary-dark: #233149;
+$bg-quaternary-dark: #475569;
+
+// Borders (Dark Mode)
+$border-dark-mode: #334155;
+$border-lighter-dark-mode: #475569;
+
+// Semantic Colors (Dark Mode)
+$success-dark-bg: #164e63;
+$success-dark-border: #155e75;
+$success-dark-text: #86efac;
+
+$danger-dark-bg: #7f1d1d;
+$danger-dark-border: #991b1b;
+$danger-dark-text: #fca5a5;
+
+$warning-dark-bg: #78350f;
+$warning-dark-border: #92400e;
+$warning-dark-text: #fbbf24;
+
+$info-dark-bg: #0c2d48;
+$info-dark-border: #1e3a8a;
+$info-dark-text: #93c5fd;
+
+// ============================================================
+// 🔴 LEGACY SEMANTIC COLOR ALIASES (For Backward Compatibility)
+// ============================================================
+$success: #10b981; // Green
+$danger: #dc2626; // Red
+$warning: #f59e0b; // Orange/Amber
+$info: #3b82f6; // Blue
+// Backward-compatible primary alias used in a few components
+$primary-blue: $primary-cyan;
+
+$success-light: #d1fae5; // Light success background
+$danger-light: #fee2e2; // Light danger background
+$warning-light: #fef3c7; // Light warning background
+$info-light: #dbeafe; // Light info background
+
+// ============================================================
+// ✨ CSS CUSTOM PROPERTIES - Runtime Theme Support
+// ============================================================
+:root {
+  // Primary Brand
+  --color-primary: #06b6d4;
+  --color-primary-dark: #0891b2;
+  --color-primary-light: #22d3ee;
+  --color-primary-hover: #0891b2;
+  --color-primary-soft: rgba(6, 182, 212, 0.14);
+  --color-on-primary: #ffffff;
+  --color-accent: #8b5cf6;
+  --color-accent-light: #a78bfa;
+
+  // Text - Light Mode
+  --color-text-primary: #{$text-primary-light};
+  --color-text-secondary: #{$text-secondary-light};
+  --color-text-tertiary: #{$text-tertiary-light};
+  --color-text-muted: #{$text-muted-light};
+
+  // Backgrounds - Light Mode
+  --color-bg-primary: #{$bg-white};
+  --color-bg-secondary: #{$bg-light};
+  --color-bg-tertiary: #{$bg-lighter};
+  --color-bg-input: #{$bg-lighter};
+  --color-card-bg: #ffffff;
+  --color-card-border: #e5e7eb;
+
+  // Borders - Light Mode
+  --color-border: #{$border-light};
+  --color-border-light: #{$border-lighter};
+  --color-border-dark: #{$border-dark};
+
+  // Semantic - Light Mode
+  --color-success-bg: #{$success-light-bg};
+  --color-success-border: #{$success-light-border};
+  --color-success-text: #{$success-light-text};
+
+  --color-danger-bg: #{$danger-light-bg};
+  --color-danger-border: #{$danger-light-border};
+  --color-danger-text: #{$danger-light-text};
+
+  --color-warning-bg: #{$warning-light-bg};
+  --color-warning-border: #{$warning-light-border};
+  --color-warning-text: #{$warning-light-text};
+
+  --color-info-bg: #{$info-light-bg};
+  --color-info-border: #{$info-light-border};
+  --color-info-text: #{$info-light-text};
+
+  // Gradients
+  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  --gradient-primary-to-right: linear-gradient(
+    to right,
+    var(--color-primary),
+    var(--color-primary-light)
+  );
+  --gradient-accent: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  --gradient-success: linear-gradient(135deg, #10b981, #34d399);
+
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+// ============================================================
+// 🌙 DARK MODE - CSS Variables Override
+// ============================================================
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Text - Dark Mode
+    --color-text-primary: #{$text-primary-dark};
+    --color-text-secondary: #{$text-secondary-dark};
+    --color-text-tertiary: #{$text-tertiary-dark};
+    --color-text-muted: #{$text-muted-dark};
+
+    // Backgrounds - Dark Mode
+    --color-bg-primary: #{$bg-primary-dark};
+    --color-bg-secondary: #{$bg-secondary-dark};
+    --color-bg-tertiary: #{$bg-tertiary-dark};
+    --color-bg-input: #{$bg-secondary-dark};
+    --color-card-bg: #1e293b;
+    --color-card-border: #334155;
+
+    --color-primary: #3b82f6;
+    --color-primary-dark: #2563eb;
+    --color-primary-light: #60a5fa;
+    --color-primary-hover: #60a5fa;
+    --color-primary-soft: rgba(59, 130, 246, 0.18);
+    --color-on-primary: #ffffff;
+
+    // Borders - Dark Mode
+    --color-border: #{$border-dark-mode};
+    --color-border-light: #{$border-lighter-dark-mode};
+
+    // Semantic - Dark Mode
+    --color-success-bg: #{$success-dark-bg};
+    --color-success-border: #{$success-dark-border};
+    --color-success-text: #{$success-dark-text};
+
+    --color-danger-bg: #{$danger-dark-bg};
+    --color-danger-border: #{$danger-dark-border};
+    --color-danger-text: #{$danger-dark-text};
+
+    --color-warning-bg: #{$warning-dark-bg};
+    --color-warning-border: #{$warning-dark-border};
+    --color-warning-text: #{$warning-dark-text};
+
+    --color-info-bg: #{$info-dark-bg};
+    --color-info-border: #{$info-dark-border};
+    --color-info-text: #{$info-dark-text};
+
+    // Shadows (adjusted for dark mode)
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  }
+}
+
+:root.dark-mode,
+html.dark-mode,
+body.dark-mode,
+:root.dark-theme,
+html.dark-theme,
+body.dark-theme,
+:root[data-theme='dark'],
+html[data-theme='dark'],
+body[data-theme='dark'] {
+  // Text - Dark Mode
+  --color-text-primary: #{$text-primary-dark};
+  --color-text-secondary: #{$text-secondary-dark};
+  --color-text-tertiary: #{$text-tertiary-dark};
+  --color-text-muted: #{$text-muted-dark};
+
+  // Backgrounds - Dark Mode
+  --color-bg-primary: #{$bg-primary-dark};
+  --color-bg-secondary: #{$bg-secondary-dark};
+  --color-bg-tertiary: #{$bg-tertiary-dark};
+  --color-bg-input: #{$bg-secondary-dark};
+  --color-card-bg: #1e293b;
+  --color-card-border: #334155;
+
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  --color-primary-hover: #60a5fa;
+  --color-primary-soft: rgba(59, 130, 246, 0.18);
+  --color-on-primary: #ffffff;
+
+  // Borders - Dark Mode
+  --color-border: #{$border-dark-mode};
+  --color-border-light: #{$border-lighter-dark-mode};
+
+  // Semantic - Dark Mode
+  --color-success-bg: #{$success-dark-bg};
+  --color-success-border: #{$success-dark-border};
+  --color-success-text: #{$success-dark-text};
+
+  --color-danger-bg: #{$danger-dark-bg};
+  --color-danger-border: #{$danger-dark-border};
+  --color-danger-text: #{$danger-dark-text};
+
+  --color-warning-bg: #{$warning-dark-bg};
+  --color-warning-border: #{$warning-dark-border};
+  --color-warning-text: #{$warning-dark-text};
+
+  --color-info-bg: #{$info-dark-bg};
+  --color-info-border: #{$info-dark-border};
+  --color-info-text: #{$info-dark-text};
+}
+
+:root.light-theme,
+html.light-theme,
+body.light-theme,
+:root[data-theme='light'],
+html[data-theme='light'],
+body[data-theme='light'] {
+  // Text - Light Mode
+  --color-text-primary: #{$text-primary-light};
+  --color-text-secondary: #{$text-secondary-light};
+  --color-text-tertiary: #{$text-tertiary-light};
+  --color-text-muted: #{$text-muted-light};
+
+  // Backgrounds - Light Mode
+  --color-bg-primary: #{$bg-white};
+  --color-bg-secondary: #{$bg-light};
+  --color-bg-tertiary: #{$bg-lighter};
+  --color-bg-input: #{$bg-lighter};
+  --color-card-bg: #ffffff;
+  --color-card-border: #e5e7eb;
+
+  --color-primary: #06b6d4;
+  --color-primary-dark: #0891b2;
+  --color-primary-light: #22d3ee;
+  --color-primary-hover: #0891b2;
+  --color-primary-soft: rgba(6, 182, 212, 0.14);
+  --color-on-primary: #ffffff;
+
+  // Borders - Light Mode
+  --color-border: #{$border-light};
+  --color-border-light: #{$border-lighter};
+  --color-border-dark: #{$border-dark};
+
+  // Semantic - Light Mode
+  --color-success-bg: #{$success-light-bg};
+  --color-success-border: #{$success-light-border};
+  --color-success-text: #{$success-light-text};
+
+  --color-danger-bg: #{$danger-light-bg};
+  --color-danger-border: #{$danger-light-border};
+  --color-danger-text: #{$danger-light-text};
+
+  --color-warning-bg: #{$warning-light-bg};
+  --color-warning-border: #{$warning-light-border};
+  --color-warning-text: #{$warning-light-text};
+
+  --color-info-bg: #{$info-light-bg};
+  --color-info-border: #{$info-light-border};
+  --color-info-text: #{$info-light-text};
+}
+
+// ============================================================
+// 🔤 TYPOGRAPHY
+// ============================================================
+
+$font-family-base:
+  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// Font Sizes
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 1.875rem;
+$font-size-4xl: 2.25rem;
+$font-size-5xl: 3rem;
+
+// Line Heights
+$line-height-tight: 1.2;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// Letter Spacing
+$letter-spacing-tight: -0.02em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.02em;
+$letter-spacing-wider: 0.05em;
+
+// ============================================================
+// 📏 SPACING SCALE
+// ============================================================
+
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 2.5rem;
+$spacing-3xl: 3rem;
+$spacing-4xl: 4rem;
+
+// ============================================================
+// 🔘 BORDER RADIUS
+// ============================================================
+
+$radius-xs: 0.25rem;
+$radius-sm: 0.5rem;
+$radius-md: 0.875rem;
+$radius-lg: 1rem;
+$radius-xl: 1.25rem;
+$radius-2xl: 1.5rem;
+$radius-3xl: 1.875rem;
+$radius-full: 9999px;
+
+// ============================================================
+// ⛰️ SHADOW TOKENS
+// ============================================================
+
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg:
+  0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl:
+  0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+$shadow-cyan-sm: 0 8px 16px rgba(56, 189, 248, 0.15);
+$shadow-cyan-md: 0 12px 35px rgba(56, 189, 248, 0.25);
+$shadow-cyan-lg: 0 15px 40px rgba(56, 189, 248, 0.35);
+$shadow-cyan-xl: 0 20px 60px rgba(56, 189, 248, 0.4);
+
+// ============================================================
+// ⏱️ TRANSITIONS & ANIMATIONS
+// ============================================================
+
+$transition-fast: 0.15s;
+$transition-base: 0.25s;
+$transition-medium: 0.3s;
+$transition-slow: 0.35s;
+$transition-slower: 0.5s;
+
+$easing-in: cubic-bezier(0.4, 0, 1, 1);
+$easing-out: cubic-bezier(0, 0, 0.2, 1);
+$easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// ============================================================
+// 📦 BREAKPOINTS
+// ============================================================
+
+$breakpoint-2xl: 1536px;
+$breakpoint-xl: 1280px;
+$breakpoint-lg: 1024px;
+$breakpoint-md: 768px;
+$breakpoint-sm: 640px;
+$breakpoint-xs: 480px;
+$breakpoint-2xs: 360px;
+
+// ============================================================
+// 🎯 CONTAINER
+// ============================================================
+
+$container-max-width: 1280px;
+$container-padding-desktop: 2rem;
+$container-padding-tablet: 1.5rem;
+$container-padding-mobile: 1rem;
+
+// ============================================================
+// 🔌 Z-INDEX SCALE
+// ============================================================
+
+$z-index-dropdown: 10;
+$z-index-sticky: 20;
+$z-index-fixed: 30;
+$z-index-modal-backdrop: 40;
+$z-index-modal: 50;
+$z-index-popover: 60;
+$z-index-tooltip: 70;
+$z-index-notification: 80;
+
+// ============================================================
+// ⚡ MISCELLANEOUS
+// ============================================================
+
+$animation-duration-fast: 200ms;
+$animation-duration-base: 300ms;
+$animation-duration-slow: 500ms;
+
+// Header
+$header-height-desktop: 90px;
+$header-height-tablet: 85px;
+$header-height-mobile: 75px;
+$header-height-sm: 70px;
+
+// Footer
+$footer-padding-desktop: 4rem 1rem;
+$footer-padding-mobile: 2rem 0.75rem;

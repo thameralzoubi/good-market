@@ -21,6 +21,19 @@
 
     <!-- Logged User -->
     <div class="actions" *ngIf="user$ | async as user; else guest">
+      <!-- Theme Toggle -->
+      <lucide-icon
+        class="theme-icon"
+        [name]="(darkMode$ | async) ? 'moon' : 'sun'"
+        [size]="20"
+        role="button"
+        tabindex="0"
+        title="Toggle dark mode"
+        aria-label="Toggle dark mode"
+        (click)="toggleDarkMode()"
+        (keydown.enter)="toggleDarkMode()"
+      ></lucide-icon>
+
       <div class="user-area">
         <span class="username" (click)="toggleDropdown($event)">
           {{ user.username }}
@@ -47,7 +60,7 @@
       <button class="icon-btn cart" (click)="goToCart()">
         <lucide-icon name="shopping-bag" [size]="22"></lucide-icon>
         <span class="badge">
-          {{ (cartService.cartItems$ | async)?.length || 0 }}
+          {{ (cartCount$ | async) || 0 }}
         </span>
       </button>
     </div>
@@ -55,6 +68,19 @@
     <!-- Guest -->
     <ng-template #guest>
       <div class="actions">
+        <!-- Theme Toggle -->
+        <lucide-icon
+          class="theme-icon"
+          [name]="(darkMode$ | async) ? 'moon' : 'sun'"
+          [size]="20"
+          role="button"
+          tabindex="0"
+          title="Toggle dark mode"
+          aria-label="Toggle dark mode"
+          (click)="toggleDarkMode()"
+          (keydown.enter)="toggleDarkMode()"
+        ></lucide-icon>
+
         <button (click)="openLoginModal()" class="btn ghost">
           <lucide-icon name="user" [size]="20"></lucide-icon>
           <span>Login</span>
@@ -70,7 +96,7 @@
         <button class="icon-btn cart" (click)="goToCart()">
           <lucide-icon name="shopping-bag" [size]="22"></lucide-icon>
           <span class="badge">
-            {{ (cartService.cartItems$ | async)?.length || 0 }}
+            {{ (cartCount$ | async) || 0 }}
           </span>
         </button>
       </div>

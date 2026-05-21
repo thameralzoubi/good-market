@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { AuthService, User } from '../../services/auth';
+import { ThemeService } from '../../services/theme';
 import { Router } from '@angular/router';
-import { LucideAngularModule, Settings, LogOut } from 'lucide-angular';
+import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink } from '@angular/router';
 import { Login } from '../login/login';
@@ -20,14 +22,24 @@ export class Header implements OnInit {
   showLoginModal = false;
   dropdownOpen = false;
   user$!: Observable<User | null>;
+  darkMode$: Observable<boolean>;
+  cartCount$: Observable<number>;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     public cartService: CartService,
-  ) {}
+    private themeService: ThemeService,
+  ) {
+    this.darkMode$ = toObservable(this.themeService.darkMode$);
+    this.cartCount$ = this.cartService.cartItems$.pipe(
+      map((items) => items.reduce((sum, item) => sum + item.quantity, 0)),
+    );
+  }
+
   searchTerm = '';
   isHomePage = true;
+
   ngOnInit(): void {
     this.user$ = this.authService.user$;
 
@@ -69,6 +81,10 @@ export class Header implements OnInit {
 
   closeDropdown() {
     this.dropdownOpen = false;
+  }
+
+  toggleDarkMode() {
+    this.themeService.toggleDarkMode();
   }
 
   /** ✅ الجديد: الانتقال لصفحة السلة */

@@ -1,0 +1,777 @@
+// ============================================================
+// 🌍 GLOBAL STYLES & RESETS
+// ============================================================
+
+@import './variables.scss';
+@import './mixins.scss';
+
+// ============================================================
+// 🔄 RESET & NORMALIZE
+// ============================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  @include smooth-scroll;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --theme-transition: 220ms ease;
+}
+
+.theme-transition,
+.theme-transition * {
+  transition:
+    background-color var(--theme-transition),
+    color var(--theme-transition),
+    border-color var(--theme-transition),
+    box-shadow var(--theme-transition),
+    fill var(--theme-transition),
+    stroke var(--theme-transition);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  overflow-x: hidden;
+  transition:
+    background-color $transition-medium,
+    color $transition-medium;
+}
+
+// ============================================================
+// 📝 TYPOGRAPHY RESETS
+// ============================================================
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+}
+
+h1 {
+  @include heading-1;
+}
+
+h2 {
+  @include heading-2;
+}
+
+h3 {
+  @include heading-3;
+}
+
+h4 {
+  @include heading-4;
+}
+
+p {
+  margin: 0;
+  line-height: $line-height-relaxed;
+
+  + p {
+    margin-top: $spacing-md;
+  }
+}
+
+a {
+  color: $primary-cyan;
+  text-decoration: none;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $primary-cyan-dark;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary-cyan;
+    outline-offset: 2px;
+  }
+}
+
+// ============================================================
+// 📋 FORM ELEMENTS
+// ============================================================
+
+input,
+textarea,
+select {
+  @include input-base;
+}
+
+button {
+  @include btn-base;
+}
+
+// ============================================================
+// 🖼️ IMAGES & MEDIA
+// ============================================================
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+picture {
+  display: contents;
+}
+
+// ============================================================
+// 📦 CONTAINER
+// ============================================================
+
+.container {
+  @include container-centered;
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 $container-padding-desktop;
+
+  @include breakpoint-lg {
+    padding: 0 $container-padding-tablet;
+  }
+
+  @include breakpoint-md {
+    padding: 0 $container-padding-mobile;
+  }
+}
+
+// ============================================================
+// 📐 GRID & FLEX UTILITIES
+// ============================================================
+
+.grid {
+  @include grid-responsive;
+}
+
+.grid-auto {
+  @include grid-auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+.flex-column {
+  @include flex-column;
+}
+
+.flex-column-center {
+  @include flex-column-center;
+}
+
+// ============================================================
+// 🎨 UTILITY CLASSES
+// ============================================================
+
+// Text Colors
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-cyan {
+  color: $primary-cyan;
+}
+
+.text-success {
+  color: $success;
+}
+
+.text-danger {
+  color: $danger;
+}
+
+.text-warning {
+  color: $warning;
+}
+
+.text-info {
+  color: $info;
+}
+
+// Background Colors
+.bg-primary {
+  background-color: var(--color-bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-bg-secondary);
+}
+
+.bg-cyan {
+  background-color: $primary-cyan-lightest;
+}
+
+.bg-success {
+  background-color: $success-light;
+}
+
+.bg-danger {
+  background-color: $danger-light;
+}
+
+// Text Alignment
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+// Text Truncation
+.text-truncate {
+  @include text-truncate;
+}
+
+.line-clamp-1 {
+  @include text-truncate-lines(1);
+}
+
+.line-clamp-2 {
+  @include text-truncate-lines(2);
+}
+
+.line-clamp-3 {
+  @include text-truncate-lines(3);
+}
+
+// Display
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+// Visibility
+.sr-only {
+  @include sr-only;
+}
+
+// Position
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.fixed {
+  position: fixed;
+}
+
+// Z-Index
+.z-dropdown {
+  z-index: $z-index-dropdown;
+}
+
+.z-sticky {
+  z-index: $z-index-sticky;
+}
+
+.z-fixed {
+  z-index: $z-index-fixed;
+}
+
+.z-modal {
+  z-index: $z-index-modal;
+}
+
+.z-popover {
+  z-index: $z-index-popover;
+}
+
+.z-tooltip {
+  z-index: $z-index-tooltip;
+}
+
+.z-notification {
+  z-index: $z-index-notification;
+}
+
+// Opacity
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+// ============================================================
+// 🎨 BUTTONS & INTERACTIONS
+// ============================================================
+
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  border: 2px solid transparent;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition:
+    all $transition-base ease-in-out,
+    box-shadow $transition-base ease-in-out;
+  white-space: nowrap;
+  user-select: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Primary Button
+  &.primary,
+  &.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 2px 10px rgba(14, 165, 233, 0.3);
+    }
+  }
+
+  // Secondary Button
+  &.secondary,
+  &.btn-secondary {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-bg-tertiary);
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  // Ghost Button (Text only)
+  &.ghost,
+  &.btn-ghost {
+    background: transparent;
+    color: var(--color-text-primary);
+    border-color: transparent;
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-bg-secondary);
+      border-color: var(--color-border);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-bg-tertiary);
+    }
+  }
+
+  // Danger Button
+  &.danger,
+  &.btn-danger {
+    background-color: #dc2626;
+    color: white;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+
+    &:hover:not(:disabled) {
+      background-color: #b91c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  // Success Button
+  &.success,
+  &.btn-success {
+    background-color: #10b981;
+    color: white;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+
+    &:hover:not(:disabled) {
+      background-color: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    }
+  }
+
+  // Size Variants
+  &.sm,
+  &.btn-sm {
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
+  }
+
+  &.lg,
+  &.btn-lg {
+    padding: $spacing-lg $spacing-xl;
+    font-size: $font-size-lg;
+  }
+
+  // Full Width
+  &.w-full {
+    width: 100%;
+  }
+
+  // Block display
+  &.block {
+    width: 100%;
+  }
+}
+
+// Icon Button
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: $radius-lg;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all $transition-base ease-in-out;
+
+  &:hover {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border);
+  }
+
+  &:active {
+    background-color: var(--color-bg-tertiary);
+  }
+
+  &.primary {
+    background-color: var(--color-primary);
+    color: white;
+
+    &:hover {
+      background-color: var(--color-primary-dark);
+    }
+  }
+
+  // Badge
+  .badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #dc2626;
+    color: white;
+    font-size: $font-size-xs;
+    padding: 2px 6px;
+    border-radius: $radius-full;
+    min-width: 20px;
+    text-align: center;
+    font-weight: $font-weight-bold;
+  }
+}
+
+// ============================================================
+// 📝 FORM ELEMENTS
+// ============================================================
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='date'],
+input[type='search'],
+textarea,
+select {
+  width: 100%;
+  padding: $spacing-md $spacing-lg;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  border: 2px solid var(--color-border);
+  border-radius: $radius-lg;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-primary);
+  transition: all $transition-base ease-in-out;
+  line-height: $line-height-normal;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:hover {
+    border-color: var(--color-primary-light);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  }
+
+  &:disabled {
+    background-color: var(--color-bg-secondary);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &:invalid {
+    border-color: #dc2626;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    }
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230ea5e9' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-md center;
+  padding-right: $spacing-2xl;
+}
+
+// Form Group
+.form-group {
+  margin-bottom: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group-inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+
+  @include breakpoint-md {
+    grid-template-columns: 1fr;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: $spacing-sm;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text-primary);
+  font-size: $font-size-sm;
+
+  .required {
+    color: #dc2626;
+  }
+}
+
+// Form Feedback
+.form-feedback {
+  margin-top: $spacing-sm;
+  font-size: $font-size-sm;
+
+  &.success {
+    color: var(--color-success-text);
+  }
+
+  &.error {
+    color: var(--color-danger-text);
+  }
+
+  &.info {
+    color: var(--color-info-text);
+  }
+}
+
+// ============================================================
+// 🎯 FOCUS VISIBLE STATE
+// ============================================================
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+// ============================================================
+// 🌓 DARK MODE STYLES
+// ============================================================
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+}
+
+body.dark-mode,
+body.dark-theme,
+body[data-theme='dark'] {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* Ensure Lucide icons inherit text color so toggle icons remain visible */
+lucide-icon {
+  color: inherit;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+// ============================================================
+// 🔲 SCROLLBAR STYLING
+// ============================================================
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary-cyan;
+  border-radius: $radius-full;
+
+  &:hover {
+    background: $primary-cyan-dark;
+  }
+}
+
+// Firefox
+* {
+  scrollbar-color: $primary-cyan var(--color-bg-secondary);
+  scrollbar-width: thin;
+}
+
+// ============================================================
+// 🎯 SELECTION
+// ============================================================
+
+::selection {
+  background-color: $primary-cyan;
+  color: $bg-white;
+}
+
+// ============================================================
+// ⚠️ PRINT STYLES
+// ============================================================
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  @page {
+    margin: 0.5cm;
+  }
+}

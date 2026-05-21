@@ -1,235 +1,246 @@
-/* Theme Colors */
-$primary-blue: #38bdf8; /* تعديل اللون */
-$dark-blue: #0ea5e9; /* تعديل اللون */
-$light-blue: #eff6ff;
-$gray-bg: #f3f4f6;
-$text-dark: #1f2937;
-$text-muted: #6b7280;
-$danger: #dc2626;
+// ============================================================
+// ⚙️ PROFILE SETTINGS STYLES
+// ============================================================
+
+@import '../../../scss/variables.scss';
+@import '../../../scss/mixins.scss';
 
 .settings-container {
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc, #eef2ff);
-}
-@media (max-width: 1024px) {
-  .settings-container {
+  background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-tertiary));
+  transition: background-color $transition-medium;
+
+  @include breakpoint-lg {
     flex-direction: column;
   }
-
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #e5e7eb;
-  }
 }
 
-@media (max-width: 768px) {
-  .content {
-    padding: 24px;
-  }
-
-  .card {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .settings-container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 1rem;
-  }
-
-  .sidebar h3 {
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-  }
-
-  .sidebar button {
-    padding: 12px 14px;
-    font-size: 0.85rem;
-    min-height: 40px;
-  }
-
-  .content {
-    padding: 16px;
-  }
-
-  .card {
-    padding: 20px;
-    border-radius: 16px;
-    max-width: 100%;
-  }
-
-  .card h2 {
-    font-size: 1.4rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .card label {
-    font-size: 0.85rem;
-    margin-top: 1rem;
-  }
-
-  .card input {
-    font-size: 0.9rem;
-    padding: 10px 12px;
-  }
-
-  .card button {
-    padding: 12px;
-    font-size: 0.9rem;
-    min-height: 40px;
-  }
-}
-
-/* Sidebar */
+/* ============================================================
+   🗂️ SIDEBAR
+   ============================================================ */
 .sidebar {
   width: 270px;
-  background: linear-gradient(180deg, #ffffff, #f8fafc);
-  padding: 28px;
-  border-right: 1px solid #e5e7eb;
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(180deg, var(--color-bg-primary), var(--color-bg-secondary));
+  padding: $spacing-2xl;
+  border-right: 1px solid var(--color-border-light);
+  box-shadow: $shadow-lg;
+  transition: all $transition-medium;
+
+  @include breakpoint-lg {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  @include breakpoint-md {
+    padding: $spacing-lg;
+  }
+
+  @include breakpoint-xs {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+    padding: $spacing-md;
+  }
 
   h3 {
-    margin-bottom: 28px;
-    font-weight: 700;
-    color: $text-dark;
-    letter-spacing: 0.3px;
+    margin-bottom: $spacing-xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-text-primary);
+    letter-spacing: $letter-spacing-wide;
+    font-size: $font-size-lg;
+
+    @include breakpoint-xs {
+      font-size: $font-size-base;
+      margin-bottom: $spacing-md;
+    }
   }
 
   button {
     width: 100%;
-    padding: 14px 16px;
-    margin-bottom: 12px;
+    padding: $spacing-md $spacing-lg;
+    margin-bottom: $spacing-sm;
     background: transparent;
     border: none;
-    border-radius: 14px;
+    border-radius: $radius-lg;
     text-align: left;
     cursor: pointer;
-    font-weight: 600;
-    color: $text-muted;
-    transition: all 0.25s ease;
+    font-weight: $font-weight-semibold;
+    color: var(--color-text-muted);
+    transition: all $transition-base;
+    font-size: $font-size-base;
+
+    @include breakpoint-xs {
+      padding: $spacing-md $spacing-md;
+      font-size: $font-size-sm;
+      min-height: 40px;
+    }
 
     &:hover {
-      background: $light-blue;
-      color: $primary-blue; /* تعديل اللون */
+      background: var(--color-bg-secondary);
+      color: $primary-cyan;
       transform: translateX(4px);
     }
 
     &.active {
-      background: linear-gradient(135deg, $primary-blue, $dark-blue); /* تعديل الألوان */
-      color: #fff;
-      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35); /* تعديل اللون */
+      background: var(--gradient-primary);
+      color: $bg-white;
+      box-shadow: $shadow-cyan-md;
     }
 
     &.danger {
       color: $danger;
 
       &:hover {
-        background: rgba(220, 38, 38, 0.08);
+        background: rgba($danger, 0.1);
         transform: translateX(4px);
       }
     }
   }
 }
 
-/* Content */
+/* ============================================================
+   📝 CONTENT SECTION
+   ============================================================ */
 .content {
   flex: 1;
-  padding: 48px;
+  padding: $spacing-4xl;
+
+  @include breakpoint-lg {
+    padding: $spacing-2xl;
+  }
+
+  @include breakpoint-md {
+    padding: $spacing-xl;
+  }
+
+  @include breakpoint-xs {
+    padding: $spacing-md;
+  }
 }
 
-/* Cards */
+/* ============================================================
+   🃏 CARD
+   ============================================================ */
 .card {
-  background: #ffffff;
-  padding: 32px;
+  @include card-base;
+  background: var(--color-bg-primary);
+  padding: $spacing-2xl;
   max-width: 440px;
-  border-radius: 22px;
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  animation: fadeUp 0.4s ease;
+  border-radius: $radius-2xl;
+  box-shadow: $shadow-lg;
+  border: 1px solid var(--color-border-light);
+
+  @include breakpoint-md {
+    max-width: 100%;
+  }
+
+  @include breakpoint-xs {
+    padding: $spacing-lg;
+    border-radius: $radius-lg;
+  }
 
   label {
     display: block;
-    margin-top: 18px;
-    font-weight: 600;
-    color: $text-dark;
+    margin-top: $spacing-lg;
+    font-weight: $font-weight-semibold;
+    color: var(--color-text-primary);
+    font-size: $font-size-base;
+
+    @include breakpoint-xs {
+      font-size: $font-size-sm;
+      margin-top: $spacing-md;
+    }
   }
 
   input {
-    width: 100%;
-    padding: 12px 14px;
-    margin-top: 8px;
-    border-radius: 14px;
-    border: 1px solid #d1d5db;
-    font-size: 14px;
-    transition: all 0.25s ease;
+    @include input-base;
+    margin-top: $spacing-sm;
 
-    &:focus {
-      outline: none;
-      border-color: $primary-blue; /* تعديل اللون */
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15); /* تعديل اللون */
+    @include breakpoint-xs {
+      font-size: $font-size-sm;
+      padding: $spacing-sm;
     }
 
     &[readonly] {
-      background: #f3f4f6;
+      background: var(--color-bg-secondary);
       cursor: not-allowed;
     }
   }
 
   small {
     color: $danger;
-    font-size: 12px;
+    font-size: $font-size-xs;
   }
 
   button {
-    margin-top: 30px;
+    margin-top: $spacing-2xl;
     width: 100%;
-    padding: 14px;
-    border-radius: 16px;
+    padding: $spacing-md;
+    border-radius: $radius-lg;
     border: none;
     cursor: pointer;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    transition: all 0.3s ease;
-  }
+    font-weight: $font-weight-bold;
+    letter-spacing: $letter-spacing-wide;
+    transition: all $transition-base;
+    font-size: $font-size-base;
 
-  .primary {
-    background: linear-gradient(135deg, $primary-blue, $dark-blue); /* تعديل الألوان */
-    color: #fff;
+    @include breakpoint-xs {
+      padding: $spacing-md;
+      font-size: $font-size-sm;
+      min-height: 40px;
+    }
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4); /* تعديل اللون */
+    &.primary {
+      background: var(--gradient-primary);
+      color: $bg-white;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-cyan-lg;
+      }
+
+      &:active {
+        transform: translateY(0) scale(0.98);
+      }
     }
   }
 }
 
-/* Delete Card */
+/* ============================================================
+   🚨 DANGER CARD
+   ============================================================ */
 .danger-card {
-  border: 1px solid rgba(220, 38, 38, 0.25);
+  border: 1px solid rgba($danger, 0.3);
 
   p {
-    color: $text-muted;
-    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: $spacing-lg;
   }
 
-  .danger {
-    background: linear-gradient(135deg, #ef4444, #b91c1c);
-    color: #fff;
+  button {
+    background: $danger;
+    color: $bg-white;
 
     &:hover {
-      box-shadow: 0 12px 30px rgba(220, 38, 38, 0.4);
+      background: darken($danger, 8%);
       transform: translateY(-2px);
+      box-shadow: $shadow-cyan-md;
     }
+  }
+}
+
+/* ============================================================
+   🌓 DARK MODE
+   ============================================================ */
+@include dark-mode {
+  .settings-container {
+    background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-primary));
+  }
+
+  .sidebar {
+    background: linear-gradient(180deg, var(--color-bg-primary), var(--color-bg-secondary));
   }
 }
 
@@ -261,7 +272,7 @@ lucide-icon {
     }
 
     &.active lucide-icon {
-      color: #ffffff;
+      color: var(--color-text-primary);
     }
   }
 }
@@ -298,8 +309,8 @@ lucide-icon {
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #22c55e;
-    background: #d1fae5;
+    color: var(--color-success-text);
+    background: var(--color-success-bg);
     border-radius: 50%;
     width: 16px;
     height: 16px;

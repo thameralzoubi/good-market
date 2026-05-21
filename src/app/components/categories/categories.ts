@@ -34,8 +34,6 @@ export class Categories implements OnInit {
         color: '#e5e7eb',
         desc: `View products in ${cat.name} category`, // ✅ وصف بالإنجليزية
       }));
-
-      console.log('Final categories:', this.categories);
     });
   }
 }

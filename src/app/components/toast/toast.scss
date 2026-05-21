@@ -17,7 +17,7 @@
   min-width: 280px;
   padding: 1rem 1.5rem;
   border-radius: 1.5rem;
-  color: #fff;
+  color: var(--color-text-primary);
   font-weight: 700;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -36,13 +36,19 @@
 
 /* ألوان حسب نوع الرسالة */
 .toast.success {
-  background: linear-gradient(135deg, #22c55e, #15803d);
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
 }
 .toast.error {
-  background: linear-gradient(135deg, #ef4444, #991b1b);
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  border: 1px solid var(--color-danger-border);
 }
 .toast.info {
-  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+  border: 1px solid var(--color-info-border);
 }
 
 /* أنيميشن */

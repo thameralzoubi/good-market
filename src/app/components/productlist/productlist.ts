@@ -7,11 +7,12 @@ import { CartService } from '../../services/cart';
 import { ProductCardComponent } from '../product-card/product-card';
 import { ProductFilter } from '../product-filter/product-filter';
 import { Search } from '../../services/search'; // ✅ إضافة
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent, ProductFilter],
+  imports: [CommonModule, ProductCardComponent, ProductFilter, LucideAngularModule],
   templateUrl: './productlist.html',
   styleUrls: ['./productlist.scss'],
 })
@@ -22,6 +23,7 @@ export class ProductListComponent implements OnInit {
   filteredProducts: ProductM[] = [];
 
   maxPriceInProducts = 0;
+  filtersOpen = false;
 
   constructor(
     private productService: ProductService,
@@ -41,6 +43,7 @@ export class ProductListComponent implements OnInit {
           this.allProducts = res;
           this.filteredProducts = res;
           this.maxPriceInProducts = res.length ? Math.max(...res.map((p) => p.price)) : 0;
+          this.scrollToProducts();
         });
         return;
       }
@@ -52,8 +55,18 @@ export class ProductListComponent implements OnInit {
         this.allProducts = res;
         this.filteredProducts = res;
         this.maxPriceInProducts = Math.max(...res.map((p) => p.price));
+        this.scrollToProducts();
       });
     });
+  }
+
+  private scrollToProducts() {
+    const target = document.getElementById('products-section');
+    if (!target) return;
+
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
   }
 
   onAddToCart(productId: number) {
@@ -81,5 +94,13 @@ export class ProductListComponent implements OnInit {
 
   resetAllFilters() {
     this.filteredProducts = [...this.allProducts];
+  }
+
+  toggleFilters() {
+    this.filtersOpen = !this.filtersOpen;
+  }
+
+  closeFilters() {
+    this.filtersOpen = false;
   }
 }

@@ -1,82 +1,102 @@
+// ============================================================
+// 🛒 CART COMPONENT STYLES
+// ============================================================
+
+@import '../../../scss/variables.scss';
+@import '../../../scss/mixins.scss';
+
 .cart-container {
-  background: #ecfeff;
-  padding: 2rem;
-  border-radius: 2rem;
-  box-shadow: 0 20px 60px rgba(56, 189, 248, 0.18);
+  background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-primary));
+  position: relative;
+  padding: $spacing-2xl;
+  border-radius: $radius-2xl;
+  box-shadow: $shadow-lg;
   max-width: 600px;
   margin: auto;
   width: 100%;
+  border: 1px solid var(--color-border-light);
 
-  @media (max-width: 1024px) {
-    padding: 1.8rem;
-    margin: 0 1.5rem;
+  @include breakpoint-lg {
+    padding: $spacing-xl;
+    margin: 0 $spacing-lg;
   }
 
-  @media (max-width: 768px) {
-    padding: 1.5rem;
-    margin: 0 1rem;
-    border-radius: 1.5rem;
+  @include breakpoint-md {
+    padding: $spacing-lg;
+    margin: 0 $spacing-md;
+    border-radius: $radius-xl;
   }
 
-  @media (max-width: 480px) {
-    padding: 1.2rem;
-    margin: 0 0.75rem;
-    border-radius: 1.2rem;
+  @include breakpoint-xs {
+    padding: $spacing-md;
+    margin: 0 $spacing-sm;
+    border-radius: $radius-lg;
   }
 
   h2 {
-    font-size: 2rem;
-    color: #38bdf8;
-    margin-bottom: 1.5rem;
+    font-size: $font-size-4xl;
+    color: $primary-cyan;
+    margin-bottom: $spacing-lg;
     text-align: center;
+    font-weight: $font-weight-black;
 
-    @media (max-width: 768px) {
-      font-size: 1.6rem;
-      margin-bottom: 1.2rem;
+    @include breakpoint-md {
+      font-size: $font-size-3xl;
+      margin-bottom: $spacing-md;
     }
 
-    @media (max-width: 480px) {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
+    @include breakpoint-xs {
+      font-size: $font-size-2xl;
+      margin-bottom: $spacing-md;
     }
   }
 
   .cart-item {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    background: #ffffff;
-    padding: 1rem;
-    border-radius: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 12px 35px rgba(56, 189, 248, 0.12);
+    @include flex-center;
+    gap: $spacing-lg;
+    background: var(--color-bg-primary);
+    padding: $spacing-lg;
+    border-radius: $radius-lg;
+    margin-bottom: $spacing-lg;
+    box-shadow: $shadow-md;
+    border: 1px solid var(--color-border-light);
+    transition: all $transition-base;
+    position: relative;
+    z-index: 1;
 
-    @media (max-width: 768px) {
-      flex-direction: column;
-      text-align: center;
-      padding: 1.2rem;
-      margin-bottom: 1rem;
+    &:hover {
+      box-shadow: $shadow-lg;
+      transform: translateY(-2px);
     }
 
-    @media (max-width: 480px) {
-      padding: 1rem;
-      gap: 0.8rem;
-      margin-bottom: 0.8rem;
+    @include breakpoint-md {
+      flex-direction: column;
+      text-align: center;
+      padding: $spacing-lg;
+      margin-bottom: $spacing-lg;
+    }
+
+    @include breakpoint-xs {
+      padding: $spacing-md;
+      gap: $spacing-md;
+      margin-bottom: $spacing-sm;
     }
 
     img {
       width: 90px;
       height: 90px;
       object-fit: contain;
-      border-radius: 1rem;
+      border-radius: $radius-lg;
       flex-shrink: 0;
+      background: var(--color-bg-secondary);
+      padding: $spacing-sm;
 
-      @media (max-width: 768px) {
+      @include breakpoint-md {
         width: 80px;
         height: 80px;
       }
 
-      @media (max-width: 480px) {
+      @include breakpoint-xs {
         width: 70px;
         height: 70px;
       }
@@ -84,183 +104,246 @@
 
     .info {
       flex: 1;
+      position: relative;
+      z-index: 1;
 
       h3 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin: 0 0 0.3rem 0;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+        color: var(--color-text-primary);
+        margin: 0 0 $spacing-xs 0;
 
-        @media (max-width: 768px) {
-          font-size: 1rem;
+        @include breakpoint-md {
+          font-size: $font-size-base;
         }
 
-        @media (max-width: 480px) {
-          font-size: 0.95rem;
+        @include breakpoint-xs {
+          font-size: $font-size-sm;
         }
       }
 
       p {
-        font-size: 0.95rem;
-        color: #374151;
-        margin: 0.3rem 0;
+        font-size: $font-size-base;
+        color: var(--color-text-secondary);
+        margin: $spacing-xs 0;
 
-        @media (max-width: 480px) {
-          font-size: 0.85rem;
+        @include breakpoint-xs {
+          font-size: $font-size-sm;
         }
       }
 
       .quantity-control {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        margin: 0.5rem 0;
+        @include flex-center;
+        gap: $spacing-sm;
+        margin: $spacing-sm 0;
+        position: relative;
+        z-index: 1;
+        pointer-events: auto;
 
-        @media (max-width: 768px) {
+        @include breakpoint-md {
           justify-content: center;
         }
 
         button {
           width: 32px;
           height: 32px;
-          border-radius: 0.5rem;
+          border-radius: $radius-md;
           border: none;
-          background: linear-gradient(145deg, #38bdf8, #7dd3fc);
-          color: #fff;
-          font-weight: 700;
+          background: var(--gradient-primary);
+          color: var(--color-on-primary);
+          font-weight: $font-weight-bold;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all $transition-base;
           min-height: 36px;
+          position: relative;
+          z-index: 1;
+          pointer-events: auto;
 
           &:hover {
             transform: translateY(-2px) scale(1.05);
+            box-shadow: $shadow-cyan-md;
           }
 
-          @media (max-width: 480px) {
+          &:active {
+            transform: translateY(0) scale(0.95);
+          }
+
+          @include breakpoint-xs {
             width: 28px;
             height: 28px;
-            font-size: 0.85rem;
+            font-size: $font-size-xs;
           }
         }
 
         span {
           min-width: 24px;
           text-align: center;
-          font-weight: 700;
+          font-weight: $font-weight-bold;
+          font-size: $font-size-base;
+          color: var(--color-text-primary);
 
-          @media (max-width: 480px) {
+          @include breakpoint-xs {
             min-width: 20px;
-            font-size: 0.9rem;
+            font-size: $font-size-sm;
           }
         }
       }
 
       .remove-btn {
-        padding: 0.5rem 1rem;
-        border-radius: 1rem;
+        padding: $spacing-sm $spacing-lg;
+        border-radius: $radius-lg;
         border: none;
-        background: #ef4444;
-        color: #fff;
-        font-weight: 700;
+        background: $danger;
+        color: $bg-white;
+        font-weight: $font-weight-bold;
         cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 0.9rem;
+        transition: all $transition-base;
+        font-size: $font-size-sm;
         min-height: 36px;
 
         &:hover {
-          background: #dc2626;
+          background: darken($danger, 8%);
           transform: translateY(-2px) scale(1.03);
+          box-shadow: $shadow-cyan-md;
         }
 
-        @media (max-width: 768px) {
+        &:active {
+          transform: translateY(0) scale(0.98);
+        }
+
+        @include breakpoint-md {
           width: 100%;
         }
 
-        @media (max-width: 480px) {
-          padding: 0.45rem 0.8rem;
-          font-size: 0.85rem;
+        @include breakpoint-xs {
+          padding: $spacing-sm;
+          font-size: $font-size-xs;
         }
       }
     }
   }
+}
 
-  .cart-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.5rem;
-    gap: 1rem;
+/* ============================================================
+   💰 CART SUMMARY
+   ============================================================ */
+.cart-summary {
+  margin-top: $spacing-xl;
+  padding-top: $spacing-lg;
+  border-top: 2px solid var(--color-border-light);
 
-    @media (max-width: 768px) {
-      flex-direction: column;
-      gap: 1rem;
+  @include breakpoint-xs {
+    margin-top: $spacing-lg;
+    padding-top: $spacing-md;
+  }
+
+  .summary-row {
+    @include flex-between;
+    margin-bottom: $spacing-md;
+    font-size: $font-size-base;
+
+    @include breakpoint-xs {
+      font-size: $font-size-sm;
     }
 
-    strong {
-      font-size: 1.3rem;
-      color: #0f172a;
-      white-space: nowrap;
+    span:first-child {
+      color: var(--color-text-secondary);
+      font-weight: $font-weight-medium;
+    }
 
-      @media (max-width: 768px) {
-        font-size: 1.1rem;
+    span:last-child {
+      color: var(--color-text-primary);
+      font-weight: $font-weight-bold;
+    }
+
+    &.total {
+      font-size: $font-size-xl;
+      margin-top: $spacing-lg;
+
+      @include breakpoint-xs {
+        font-size: $font-size-lg;
       }
 
-      @media (max-width: 480px) {
-        font-size: 1rem;
+      span:last-child {
+        color: $primary-cyan;
+        font-size: $font-size-2xl;
+
+        @include breakpoint-xs {
+          font-size: $font-size-xl;
+        }
       }
     }
+  }
+}
+
+/* ============================================================
+   🔘 EMPTY CART STATE
+   ============================================================ */
+.empty-cart {
+  text-align: center;
+  padding: $spacing-4xl $spacing-xl;
+
+  @include breakpoint-xs {
+    padding: $spacing-2xl $spacing-md;
+  }
+
+  lucide-icon {
+    width: 80px;
+    height: 80px;
+    color: var(--color-text-muted);
+    margin-bottom: $spacing-lg;
+    opacity: 0.5;
+
+    @include breakpoint-xs {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  h3 {
+    font-size: $font-size-2xl;
+    color: var(--color-text-primary);
+    margin-bottom: $spacing-md;
+    font-weight: $font-weight-bold;
+
+    @include breakpoint-xs {
+      font-size: $font-size-xl;
+    }
+  }
+
+  p {
+    color: var(--color-text-secondary);
+    margin-bottom: $spacing-xl;
+    font-size: $font-size-base;
+  }
+
+  .actions {
+    @include flex-center;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
 
     button {
-      padding: 0.7rem 1.2rem;
-      border-radius: 1rem;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.95rem;
-      min-height: 44px;
+      @include btn-primary;
 
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-
-      @media (max-width: 480px) {
-        padding: 0.6rem 1rem;
-        font-size: 0.85rem;
-      }
-
-      &.clear-btn {
-        background: #f97316;
-        color: #fff;
-
-        &:hover {
-          background: #ea580c;
-          transform: translateY(-2px);
-        }
-      }
-
-      &.checkout-btn {
-        background: linear-gradient(145deg, #38bdf8, #7dd3fc);
-        color: #fff;
-
-        &:hover {
-          background: linear-gradient(145deg, #0ea5e9, #38bdf8);
-          transform: translateY(-2px);
-        }
+      @include breakpoint-xs {
+        padding: $spacing-md $spacing-lg;
+        font-size: $font-size-sm;
       }
     }
   }
+}
 
-  .empty-text {
-    text-align: center;
-    font-size: 1rem;
-    color: #6b7280;
-    padding: 2rem 0;
+/* ============================================================
+   🌓 DARK MODE
+   ============================================================ */
+@include dark-mode {
+  .cart-container {
+    .cart-item {
+      background: rgba(30, 41, 59, 0.8);
 
-    @media (max-width: 480px) {
-      font-size: 0.95rem;
-      padding: 1.5rem 0;
+      img {
+        background: rgba(51, 65, 85, 0.5);
+      }
     }
   }
 }
@@ -268,7 +351,7 @@
 .empty-cart {
   text-align: center;
   padding: 3rem 1rem;
-  color: #6b7280;
+  color: var(--color-text-secondary);
 
   @media (max-width: 768px) {
     padding: 2.5rem 1rem;
@@ -279,7 +362,7 @@
   }
 
   lucide-icon {
-    color: #38bdf8;
+    color: var(--color-primary);
     margin-bottom: 1rem;
     width: 60px;
     height: 60px;
@@ -294,7 +377,7 @@
   h3 {
     font-size: 1.4rem;
     font-weight: 800;
-    color: #0f172a;
+    color: var(--color-text-primary);
     margin-bottom: 0.4rem;
 
     @media (max-width: 768px) {
@@ -321,8 +404,8 @@
     padding: 0.8rem 1.6rem;
     border-radius: 1.2rem;
     border: none;
-    background: linear-gradient(145deg, #38bdf8, #7dd3fc);
-    color: #fff;
+    background: var(--gradient-primary);
+    color: var(--color-on-primary);
     font-weight: 800;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -332,7 +415,7 @@
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(56, 189, 248, 0.45);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.35);
     }
 
     @media (max-width: 768px) {
