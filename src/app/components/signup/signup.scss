@@ -21,8 +21,8 @@
     padding: 3rem 2.5rem;
     border-radius: 2.5rem;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
-    text-align: right;
-    direction: rtl;
+    text-align: left;
+    direction: ltr;
     position: relative;
     overflow: hidden;
     transition:
@@ -184,14 +184,14 @@
 
   input {
     width: 100%;
-    padding-left: 3rem;
-    padding-right: 1.2rem;
+    padding-right: 3rem;
+    padding-left: 1.2rem;
   }
 
   .eye-icon {
     position: absolute;
     top: 50%;
-    left: 1rem;
+    right: 1rem;
     transform: translateY(-50%);
     cursor: pointer;
     color: var(--color-primary-light);
@@ -213,14 +213,14 @@
 
   input {
     width: 100%;
-    padding-left: 1.8rem;
-    padding-right: 1.2rem;
+    padding-right: 1.8rem;
+    padding-left: 1.2rem;
   }
 
   .check-icon {
     position: absolute;
     top: 50%;
-    left: 0.3rem;
+    right: 0.3rem;
     transform: translateY(-50%);
     color: var(--color-success-text);
     background: var(--color-success-bg);

@@ -4,6 +4,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { AuthService, User } from '../../services/auth';
 import { ThemeService } from '../../services/theme';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink } from '@angular/router';
@@ -24,10 +25,14 @@ export class Header implements OnInit {
   user$!: Observable<User | null>;
   darkMode$: Observable<boolean>;
   cartCount$: Observable<number>;
+  isHomePage = true;
+  isCompactHeader = false;
+  showBackButton = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
+    private location: Location,
     public cartService: CartService,
     private themeService: ThemeService,
   ) {
@@ -38,7 +43,6 @@ export class Header implements OnInit {
   }
 
   searchTerm = '';
-  isHomePage = true;
 
   ngOnInit(): void {
     this.user$ = this.authService.user$;
@@ -48,9 +52,22 @@ export class Header implements OnInit {
       this.openLoginModal();
     });
 
+    this.updateHeaderState(this.router.url);
+
     this.router.events.subscribe(() => {
-      this.isHomePage = this.router.url === '/';
+      this.updateHeaderState(this.router.url);
     });
+  }
+
+  private updateHeaderState(url: string) {
+    const cleanUrl = url.split('?')[0];
+    const isAuthPage = cleanUrl === '/login' || cleanUrl === '/signup';
+    const isProfilePage = cleanUrl === '/profile-settings';
+    const isProductDetail = /^\/product\/.+\/\d+$/.test(cleanUrl);
+
+    this.isHomePage = cleanUrl === '/';
+    this.isCompactHeader = isAuthPage || isProfilePage;
+    this.showBackButton = this.isCompactHeader || isProductDetail;
   }
 
   performSearch() {
@@ -85,6 +102,11 @@ export class Header implements OnInit {
 
   toggleDarkMode() {
     this.themeService.toggleDarkMode();
+  }
+
+  goBack(event?: Event) {
+    event?.stopPropagation();
+    this.location.back();
   }
 
   /** ✅ الجديد: الانتقال لصفحة السلة */

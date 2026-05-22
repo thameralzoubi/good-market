@@ -32,7 +32,8 @@
   border-radius: 2.5rem;
   background: var(--color-bg-primary);
   box-shadow: 0 40px 80px rgba(56, 189, 248, 0.35);
-  direction: rtl;
+  direction: ltr;
+  text-align: left;
   position: relative;
   animation: modalEpicIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
@@ -52,7 +53,7 @@
 .close-btn {
   position: absolute;
   top: 1.2rem;
-  left: 1.2rem;
+  right: 1.2rem;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -159,12 +160,12 @@ h2 {
   width: 100%;
 
   input {
-    padding-left: 3.4rem;
+    padding-right: 3.4rem;
   }
 
   .eye-icon {
     position: absolute;
-    left: 1.2rem;
+    right: 1.2rem;
     top: 0;
     height: 100%;
     display: flex;
@@ -232,6 +233,28 @@ h2 {
     padding: 1rem;
     font-size: 1rem;
     border-radius: 1.6rem;
+  }
+}
+
+.signup-link {
+  margin-top: 1.4rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+
+  a {
+    color: var(--color-primary);
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
   }
 }
 

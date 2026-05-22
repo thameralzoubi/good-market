@@ -123,6 +123,16 @@
     border: none;
     box-shadow: none;
   }
+
+  .sidebar input,
+  .sidebar select,
+  .sidebar button {
+    min-height: 44px;
+  }
+
+  .sidebar .filter-group label {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -133,5 +143,19 @@
 
   .sidebar h3 {
     font-size: 1rem;
+  }
+
+  .sidebar .filter-group input,
+  .sidebar .filter-group select {
+    font-size: 0.9rem;
+    padding: 0.85rem 0.9rem;
+  }
+
+  .sidebar .price-values {
+    font-size: 0.85rem;
+  }
+
+  .sidebar .reset-btn {
+    padding: 0.9rem;
   }
 }

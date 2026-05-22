@@ -9,7 +9,7 @@
   background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
   color: var(--color-text-secondary);
   padding: $spacing-3xl $spacing-lg;
-  direction: rtl;
+  direction: ltr;
   font-family: $font-family-base;
   width: 100%;
   transition:
@@ -60,8 +60,8 @@
         h4 {
           font-size: $font-size-lg;
           margin-bottom: $spacing-lg;
-          border-right: 3px solid var(--color-primary);
-          padding-right: $spacing-md;
+          border-left: 3px solid var(--color-primary);
+          padding-left: $spacing-md;
           font-weight: $font-weight-bold;
           color: var(--color-text-primary);
           transition: all $transition-base ease-in-out;
@@ -100,7 +100,7 @@
 
               &:hover {
                 color: var(--color-primary);
-                padding-right: $spacing-sm;
+                padding-left: $spacing-sm;
               }
             }
           }

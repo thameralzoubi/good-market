@@ -1,6 +1,11 @@
-<header class="header" (click)="closeDropdown()">
+<header class="header" [class.compact]="isCompactHeader" (click)="closeDropdown()">
   <div class="container">
     <!-- Logo -->
+    <button class="back-button" *ngIf="showBackButton" (click)="goBack($event)">
+      <lucide-icon name="arrow-left" [size]="20"></lucide-icon>
+      <span>Back</span>
+    </button>
+
     <div class="logo" routerLink="/">
       <div class="logo-icon">
         <lucide-icon name="shopping-bag" [size]="28"></lucide-icon>
@@ -9,7 +14,7 @@
     </div>
 
     <!-- Global Search (not home) -->
-    <div class="header-search" *ngIf="!isHomePage">
+    <div class="header-search" *ngIf="!isHomePage && !isCompactHeader">
       <input
         type="text"
         placeholder="Search..."
@@ -20,85 +25,105 @@
     </div>
 
     <!-- Logged User -->
-    <div class="actions" *ngIf="user$ | async as user; else guest">
-      <!-- Theme Toggle -->
-      <lucide-icon
-        class="theme-icon"
-        [name]="(darkMode$ | async) ? 'moon' : 'sun'"
-        [size]="20"
-        role="button"
-        tabindex="0"
-        title="Toggle dark mode"
-        aria-label="Toggle dark mode"
-        (click)="toggleDarkMode()"
-        (keydown.enter)="toggleDarkMode()"
-      ></lucide-icon>
+    <ng-container *ngIf="!isCompactHeader; else guest">
+      <ng-container *ngIf="user$ | async as user; else guest">
+        <div class="actions">
+          <!-- Theme Toggle -->
+          <lucide-icon
+            class="theme-icon"
+            [name]="(darkMode$ | async) ? 'moon' : 'sun'"
+            [size]="20"
+            role="button"
+            tabindex="0"
+            title="Toggle dark mode"
+            aria-label="Toggle dark mode"
+            (click)="toggleDarkMode()"
+            (keydown.enter)="toggleDarkMode()"
+          ></lucide-icon>
 
-      <div class="user-area">
-        <span class="username" (click)="toggleDropdown($event)">
-          {{ user.username }}
-        </span>
+          <div class="user-area">
+            <span class="username" (click)="toggleDropdown($event)">
+              {{ user.username }}
+            </span>
 
-        <div class="dropdown" [class.open]="dropdownOpen">
-          <button class="dropdown-item" routerLink="/profile-settings">
-            <lucide-icon name="settings" [size]="18"></lucide-icon>
-            Profile Settings
-          </button>
+            <div class="dropdown" [class.open]="dropdownOpen">
+              <button class="dropdown-item" routerLink="/profile-settings">
+                <lucide-icon name="settings" [size]="18"></lucide-icon>
+                Profile Settings
+              </button>
 
-          <div class="dropdown-divider"></div>
+              <div class="dropdown-divider"></div>
 
-          <button routerLink="/home" class="dropdown-item danger" (click)="logout()">
-            <lucide-icon name="log-out" [size]="18"></lucide-icon>
-            Logout
+              <button routerLink="/home" class="dropdown-item danger" (click)="logout()">
+                <lucide-icon name="log-out" [size]="18"></lucide-icon>
+                Logout
+              </button>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Cart -->
+          <button class="icon-btn cart" (click)="goToCart()">
+            <lucide-icon name="shopping-bag" [size]="22"></lucide-icon>
+            <span class="badge">
+              {{ (cartCount$ | async) || 0 }}
+            </span>
           </button>
         </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- Cart -->
-      <button class="icon-btn cart" (click)="goToCart()">
-        <lucide-icon name="shopping-bag" [size]="22"></lucide-icon>
-        <span class="badge">
-          {{ (cartCount$ | async) || 0 }}
-        </span>
-      </button>
-    </div>
+      </ng-container>
+    </ng-container>
 
     <!-- Guest -->
     <ng-template #guest>
       <div class="actions">
-        <!-- Theme Toggle -->
-        <lucide-icon
-          class="theme-icon"
-          [name]="(darkMode$ | async) ? 'moon' : 'sun'"
-          [size]="20"
-          role="button"
-          tabindex="0"
-          title="Toggle dark mode"
-          aria-label="Toggle dark mode"
-          (click)="toggleDarkMode()"
-          (keydown.enter)="toggleDarkMode()"
-        ></lucide-icon>
+        <ng-container *ngIf="isCompactHeader; else fullGuest">
+          <lucide-icon
+            class="theme-icon"
+            [name]="(darkMode$ | async) ? 'moon' : 'sun'"
+            [size]="20"
+            role="button"
+            tabindex="0"
+            title="Toggle dark mode"
+            aria-label="Toggle dark mode"
+            (click)="toggleDarkMode()"
+            (keydown.enter)="toggleDarkMode()"
+          ></lucide-icon>
+        </ng-container>
 
-        <button (click)="openLoginModal()" class="btn ghost">
-          <lucide-icon name="user" [size]="20"></lucide-icon>
-          <span>Login</span>
-        </button>
+        <ng-template #fullGuest>
+          <!-- Theme Toggle -->
+          <lucide-icon
+            class="theme-icon"
+            [name]="(darkMode$ | async) ? 'moon' : 'sun'"
+            [size]="20"
+            role="button"
+            tabindex="0"
+            title="Toggle dark mode"
+            aria-label="Toggle dark mode"
+            (click)="toggleDarkMode()"
+            (keydown.enter)="toggleDarkMode()"
+          ></lucide-icon>
 
-        <button class="btn primary" routerLink="/signup">
-          <lucide-icon name="user-plus" [size]="20"></lucide-icon>
-          <span>Sign Up</span>
-        </button>
+          <button (click)="openLoginModal()" class="btn ghost">
+            <lucide-icon name="user" [size]="20"></lucide-icon>
+            <span>Login</span>
+          </button>
 
-        <div class="divider"></div>
+          <button class="btn primary" routerLink="/signup">
+            <lucide-icon name="user-plus" [size]="20"></lucide-icon>
+            <span>Sign Up</span>
+          </button>
 
-        <button class="icon-btn cart" (click)="goToCart()">
-          <lucide-icon name="shopping-bag" [size]="22"></lucide-icon>
-          <span class="badge">
-            {{ (cartCount$ | async) || 0 }}
-          </span>
-        </button>
+          <div class="divider"></div>
+
+          <button class="icon-btn cart" (click)="goToCart()">
+            <lucide-icon name="shopping-bag" [size]="22"></lucide-icon>
+            <span class="badge">
+              {{ (cartCount$ | async) || 0 }}
+            </span>
+          </button>
+        </ng-template>
       </div>
     </ng-template>
   </div>

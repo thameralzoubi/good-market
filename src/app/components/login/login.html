@@ -35,6 +35,8 @@
       <button type="submit" class="btn-login" [disabled]="loading">
         {{ loading ? 'Logging in...' : 'Login' }}
       </button>
+
+      <p class="signup-link">Don’t have an account? <a (click)="goToSignup()">Sign up</a></p>
     </form>
   </div>
 </div>

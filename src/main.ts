@@ -53,6 +53,7 @@ import {
   AtSign,
   Linkedin,
   MessageCircle,
+  ArrowLeft,
 } from 'lucide-angular';
 
 bootstrapApplication(App, {
@@ -104,6 +105,7 @@ bootstrapApplication(App, {
         AtSign,
         Linkedin,
         MessageCircle,
+        ArrowLeft,
       }),
     ),
     provideRouter(routes),
